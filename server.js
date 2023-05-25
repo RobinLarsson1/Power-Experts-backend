@@ -14,7 +14,7 @@ app.use('/api', express.json())  // gör så att vi kan använda req.body
 // Routes
 app.use('/api/products', productsRouter)
 app.use('/api/users', usersRouter)
-app.use('/api/search', searchRouter)
+app.use('/api', searchRouter)
 
 // starta
 app.listen(port, () => {
