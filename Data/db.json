@@ -1,9 +1,13 @@
 {
 	"products": [
-		
+		{
+			"products" : "penna"
+		}
 	],
 	"users": [
-		
+		{
+			"user" : "wille"
+		}
 	]
 	
 }
