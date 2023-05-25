@@ -31,13 +31,13 @@ router.delete('/:id', async (req, res) => {
     }
 
     await db.read()
-    let maybeFlower = db.data.products.find(flower => flower.id === id)
-    if(!maybeFlower) {
+    let findProduct = db.data.products.find(product => product.id === id)
+    if(!findProduct) {
         res.sendStatus(404)
         return
     }
 
-    db.data.products = db.data.products.filter(flower => flower.id !== id)
+    db.data.products = db.data.products.filter(product => product.id !== id)
     await db.write()
     res.sendStatus(200)
   });
