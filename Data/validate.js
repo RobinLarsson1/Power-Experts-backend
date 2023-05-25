@@ -1,3 +1,8 @@
+import express from 'express'
+import { getDb } from '../Data/database.js'
+
+const router = express.Router()
+const db = getDb()
 
 
 function isValidProduct(p) {
@@ -71,8 +76,8 @@ function generateId() {
 
 
 
-function isValidId() {
-	let id = Number(rew.params.id)
+function isValidId(x) {
+	let id = Number(x)
 
 	if (isNaN(id)) {
 		return false
