@@ -1,10 +1,7 @@
 {
   "dependencies": {
     "express": "^4.18.2",
-<<<<<<< HEAD
-=======
     "low": "^1.1.92",
->>>>>>> ecc2e0c921912a43fc91e53b004bfdfe08560b02
     "lowdb": "^6.0.1",
     "readline-sync": "^1.4.10"
   },
