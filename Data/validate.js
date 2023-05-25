@@ -33,7 +33,7 @@ function isValidProduct(p) {
 	let tagsIsValid = (typeof p.tags) === 'string'
 	tagsIsValid = tagsIsValid && p.tags !== ''
 
-	if (!nameIsValid || priceIsValid || imageIsValid || tagsIsValid) {
+	if (!nameIsValid || !priceIsValid || !imageIsValid || !tagsIsValid) {
 		return false
 	}
 	return true
