@@ -1,5 +1,6 @@
 import express from 'express'
 import { getDb } from '../Data/database.js'
+import { isValidProduct, isValidUser, generateId, isValidId } from '../Data/validate.js'
 
 const router = express.Router()
 const db = getDb()
