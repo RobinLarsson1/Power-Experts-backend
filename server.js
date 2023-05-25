@@ -1,5 +1,6 @@
 // Import
 import express from 'express'
+import productsRouter from './routes/product.js'
 
 
 // Konfigurera server
@@ -10,7 +11,7 @@ const app = express()
 app.use('/api', express.json())  // gör så att vi kan använda req.body
 
 // Routes
-// app.use('/api/flowers', flowerRouter)
+app.use('/api/products', productsRouter)
 
 // starta
 app.listen(port, () => {
