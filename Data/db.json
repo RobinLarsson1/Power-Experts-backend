@@ -22,16 +22,6 @@
       ]
     },
     {
-      "id": "3",
-      "name": "Almost skateboards",
-      "price": 1199,
-      "img": "https://www.boardstore.com.au/assets/full/002005094.jpg?20200713190756",
-      "tags": [
-        "Skateboard",
-        "Classic  "
-      ]
-    },
-    {
       "id": "4",
       "name": "Chocolate skateboards",
       "price": 1099,

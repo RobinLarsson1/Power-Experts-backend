@@ -21,13 +21,23 @@ router.post('/', async (req, res) => {
 
 })
 
-router.delete('/:id', async(req, res) => {
-	let id = Number(req.params.id)
+router.delete('/:id', async (req, res) => {
+    let id = Number(req.params.id)
+  
+    if (isNaN(id) || id < 0) {
+        res.sendStatus(400)
+        return
+    }
 
-	await db.read()
-	db.data.products = db.data.products.filter(product => product.id !== id)
-	await db.write()
-	res.sendStatus(200)
-})
+    await db.read()
+    let maybeFlower = db.data.products.find(flower => flower.id === id)
+    if(!maybeFlower) {
+        res.sendStatus(404)
+        return
+    }
 
+    db.data.products = db.data.products.filter(flower => flower.id !== id)
+    await db.write()
+    res.sendStatus(200)
+  });
 export default router
