@@ -143,9 +143,19 @@
     ],
     "users": [
         {
-            "id": "",
-            "name": "string",
-            "password": "string"
+            "id": "1",
+            "name": "MonkeOne",
+            "password": "scarybusey"
+        },
+        {
+            "id": "2",
+            "name": "MonkeTwo",
+            "password": "hellnotel"
+        },
+        {
+            "id": "3",
+            "name": "MonkeThree",
+            "password": "bobandy"
         }
     ]
 }
