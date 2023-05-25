@@ -1,0 +1,24 @@
+{
+    "dependencies": {
+        "express": "^4.18.2"
+    },
+    "name": "power-experts-backend",
+    "description": "Backend group assignment",
+    "version": "1.0.0",
+    "main": "index.js",
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/RobinLarsson1/Power-Experts-backend.git"
+    },
+    "keywords": [],
+    "author": "KG, Robin, William",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/RobinLarsson1/Power-Experts-backend/issues"
+    },
+    "homepage": "https://github.com/RobinLarsson1/Power-Experts-backend#readme"
+}
