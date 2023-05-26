@@ -67,9 +67,9 @@ router.get('/:id', async (req, res) => {
 
 	if (!isNaN(id)) {
 		await db.read();
-		const flower = db.data.products.find((p) => p.id === id);
-		if (flower) {
-			res.send(flower);
+		const product = db.data.products.find((p) => p.id === id);
+		if (product) {
+			res.send(product);
 		} else {
 			res.status(404).send('Product not found.');
 		}

@@ -86,4 +86,13 @@ function isValidId(x) {
 }
 
 
-export {isValidProduct, isValidUser, generateId, isValidId}
+
+function isSearchValid(s) {
+	if (typeof s !== 'string' || s === '') {
+	  return false;
+	}
+	return true;
+  }
+
+
+export {isValidProduct, isValidUser, generateId, isValidId, isSearchValid}
