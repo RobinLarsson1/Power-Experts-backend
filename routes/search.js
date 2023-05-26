@@ -5,18 +5,20 @@ const router = express.Router()
 const db = getDb()
 
 router.get('/:name', async (req, res) => {
-	let name = req.params.name
+	let name = req.query.name
 
 	if((typeof name) === 'string') {
 		await db.read();
-		let findProduct = db.data.products.filter(product => product.name.toLowerCase().includes(name))
+		const findProduct = db.data.products.filter(product =>
+      product.name.toLowerCase().includes(name.toLowerCase())
+    );
 		
-		if(findProduct) {
+		if(findProduct.length > 0 ) {
 			res.send(findProduct)
 			await db.write()
 		}
 		else {
-			res.send('not found')
+			res.status(404).send('not found')
 			await db.write()
 		}
 	}
