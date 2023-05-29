@@ -4,8 +4,9 @@ import { getDb } from '../Data/database.js';
 const router = express.Router();
 const db = getDb();
 
+// Search procuct name
 router.get('/', async (req, res) => {
-  const name = req.query.name;
+  const name = req.query.q;
 
   if (typeof name === 'string') {
     await db.read();
@@ -22,5 +23,18 @@ router.get('/', async (req, res) => {
     }
   }
 });
+
+// Search product name by price
+router.get('/', async (req, res) => {
+  const sortByPrice = req.query.sort//=price&order=Din sökning;
+
+});
+
+// Search product name from A-Z
+router.get('/', async (req, res) => {
+  const sortByAz = req.query.q//=bad&sort=name&order=Din sökning;
+
+});
+
 
 export default router;
