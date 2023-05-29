@@ -5,6 +5,7 @@ import { isValidProduct, isValidUser, generateId, isValidId } from '../Data/vali
 const router = express.Router()
 const db = getDb()
 
+
 router.get('/', async (req, res) => {
 	await db.read()
 	res.send(db.data.products)
