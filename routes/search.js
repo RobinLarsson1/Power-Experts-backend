@@ -6,60 +6,44 @@ const db = getDb();
 
 
 router.get('/', async (req, res) => {
-  // Search procuct name
   const name = req.query.q
-
-  if (typeof name === 'string') {
-    await db.read()
-    const findProduct = db.data.products.filter(product =>
-      product.name.toLowerCase().includes(name.toLowerCase())
-    )
-
-    if (findProduct.length > 0) {
-      res.send(findProduct)
-      await db.write()
-    } else {
-      res.status(404).send('not found');
-      await db.write()
-    }
-  }
-
-  // Search product name by price
   const searchQuery = req.query.order
   const sortOrder = req.query.sort
 
+  if (typeof name === 'string') {
+    await db.read()
+    const filteredProducts = db.data.products.filter(product =>
+      product.name.toLowerCase().includes(name.toLowerCase())
+    )
+
+    if (searchQuery === 'desc' && sortOrder === 'name' && filteredProducts.length > 0) {
+      // Sort filtered products by name in ascending order
+      filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+
+      res.send(filteredProducts)
+      // Search all products 
+    } else if(filteredProducts.length > 0)  {
+      res.send(filteredProducts)
+    }
+    else {
+      res.status(404).send('Not found');
+    }
+
+    await db.write()
+    return;
+  }
+
+  // Sort by price
   if (searchQuery === 'asc' && sortOrder === 'price') {
     await db.read()
     const sortedProducts = db.data.products.sort((a, b) => a.price - b.price)
 
-
     res.send(sortedProducts)
-    await db.write()
   } else {
     res.status(404).send('Not found')
-    await db.write()
   }
 
-  // Search product name from A-Z
-  if (typeof name === 'string') {
-    await db.read()
-
-    let filteredProducts = db.data.products.filter((product) =>
-      product.name.toLowerCase().includes(name.toLowerCase())
-    )
-
-    if (filteredProducts.length > 0) {
-      if (sortOrder === 'name' && searchQuery === 'desc') {
-        filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
-      } 
-
-      res.send(filteredProducts);
-      await db.write();
-    } else {
-      res.status(404).send('Not found');
-      await db.write();
-    }
-  }
+  await db.write()
 })
 
 export default router;
