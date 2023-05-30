@@ -51,8 +51,8 @@ function isValidUser(u) {
     let usernameIsValid = (typeof u.name) === 'string'
     usernameIsValid = usernameIsValid && u.name !== ''
 
-    let passwordIsValid = (typeof u.pass) === 'string'
-    passwordIsValid = passwordIsValid && u.pass !== ''
+    let passwordIsValid = (typeof u.password) === 'string'
+    passwordIsValid = passwordIsValid && u.password !== ''
 
 
     if (!usernameIsValid || !passwordIsValid) {
@@ -92,9 +92,9 @@ function isSearchValid(s) {
     return true;
 }
 
-function hasID(object) {
-    let idIsValid = (typeof object.id) === "number"
-    idIsValid = idIsValid && object.id > 0
+function hasID(i) {
+    let idIsValid = (typeof i.id) === "number"
+    idIsValid = idIsValid && i.id > 0
     return idIsValid
 }
 

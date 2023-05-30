@@ -58,32 +58,32 @@ router.get('/:id', async (req, res) => {
 
 
 router.put('/:id', async (req, res) => {
-    // Validera id
-    if (!isValidId(req.params.id)) {
-        res.sendStatus(400)
-        return
+    const id = Number(req.params.id);
+  
+    // Validera body (object)
+    if (!isValidUser(req.body)) {
+      res.sendStatus(400);
+      console.log('log2');
+      return;
     }
-    let id = Number(req.params.id)
-
-    // Validera body ( object)
-    if (!isValidUser(req.body) || !hasID(req.body)) {
-        res.sendStatus(400)
-        return
-    }
-    let newUser = req.body
-
-    // Finns produkt med samma id?
-    // I så fall byt ut objektet
-    await db.read()
-    let oldUserIndex = db.data.users.findIndex(user => user.id === id)
+  
+    // Finns användare med samma id?
+    // I så fall uppdatera objektet
+    await db.read();
+    const oldUserIndex = db.data.users.findIndex(user => user.id === id);
     if (oldUserIndex === -1) {
-        res.sendStatus(404)
-        return
+      res.sendStatus(404);
+      console.log('log3');
+      return;
     }
-
-    db.data.users[oldUserIndex] = newUser
-    await db.write()
-    res.sendStatus(200)
-})
+  
+    const updatedUser = req.body;
+    updatedUser.id = id;
+  
+    db.data.users[oldUserIndex] = updatedUser;
+    await db.write();
+    res.sendStatus(200);
+  });
+  
 
 export default router
