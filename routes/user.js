@@ -1,6 +1,6 @@
 import express from 'express'
 import { getDb } from '../Data/database.js'
-import { isValidUser, hasID } from '../Data/validate.js'
+import { isValidUser, isValidId, hasID } from '../Data/validate.js'
 
 const router = express.Router()
 const db = getDb()
@@ -41,6 +41,9 @@ router.delete('/:id', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
+
+    
+
     let id = Number(req.params.id);
 
     if (!isNaN(id)) {
