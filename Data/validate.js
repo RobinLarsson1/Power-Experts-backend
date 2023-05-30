@@ -49,11 +49,10 @@ function isValidUser(u) {
     }
 
     let usernameIsValid = (typeof u.name) === 'string'
-    usernameIsValid = usernameIsValid && u.name !== '' && u.name.length >= 4;
-
+    usernameIsValid = usernameIsValid && u.name !== ''
 
     let passwordIsValid = (typeof u.pass) === 'string'
-    passwordIsValid = passwordIsValid && u.pass !== '' && u.pass.length >= 4;
+    passwordIsValid = passwordIsValid && u.pass !== ''
 
 
     if (!usernameIsValid || !passwordIsValid) {

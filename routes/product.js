@@ -90,30 +90,46 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     // Validera id
     if (!isValidId(req.params.id)) {
-        res.sendStatus(400)
-        return
+        res.sendStatus(400);
+        console.log('log 1');
+        return;
     }
-    let id = Number(req.params.id)
+    const id = Number(req.params.id);
 
-    // Validera body ( object)
-    if (!isValidProduct(req.body) || !hasID(req.body)) {
-        res.sendStatus(400)
-        return
+    // Validera body (objekt)
+    if (!isValidProduct(req.body)) {
+        res.sendStatus(400);
+        console.log('log 2');
+        return;
     }
-    let newProduct = req.body
+    const newProduct = req.body;
 
     // Finns produkt med samma id?
     // I så fall byt ut objektet
-    await db.read()
-    let oldProductIndex = db.data.products.findIndex(product => product.id === id)
+    await db.read();
+    const oldProductIndex = db.data.products.findIndex(product => product.id === id);
     if (oldProductIndex === -1) {
-        res.sendStatus(404)
-        return
+        res.sendStatus(404);
+        console.log('log 3');
+        return;
     }
 
-    db.data.products[oldProductIndex] = newProduct
-    await db.write()
-    res.sendStatus(200)
-})
+    // Sätt ID:t i newProduct till det befintliga ID:t
+    newProduct.id = id;
+
+    // Uppdatera objektet med önskad ordning på egenskaperna
+    const updatedProduct = {
+        id: newProduct.id,
+        name: newProduct.name,
+        price: newProduct.price,
+        image: newProduct.image,
+        tags: newProduct.tags
+    };
+
+    db.data.products[oldProductIndex] = updatedProduct;
+    await db.write();
+    res.sendStatus(200);
+});
+
 
 export default router

@@ -13,7 +13,7 @@
     },
     {
       "id": 2,
-      "name": "Antihero skateboards",
+      "name": "ghhshsd",
       "price": 1199,
       "image": "https://www.boardstore.com.au/assets/full/002005093.jpg?20200713185348",
       "tags": [
@@ -234,6 +234,11 @@
       "name": "MonkeThree",
       "password": "bobandy",
       "id": 3
+    },
+    {
+      "name": "Grogu McYoda",
+      "password": "may-4th",
+      "id": 53134
     }
   ]
 }
