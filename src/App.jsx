@@ -112,9 +112,14 @@ function App() {
 
             <div className='produkt-div'>
                 
-                <button onClick={getProducts}> Give me some products! </button>
+                {/* <button onClick={getProducts}> Give me some products! </button> */}
             </div>
             <div className='product-wrapper'>
+                <section className="product-header">
+                    <hr className='product-hr'/>
+                    <h2>Produkter</h2>
+                    <hr className='product-hr'/>
+                </section>
             <div >
                 {products
                     ? (
@@ -122,13 +127,13 @@ function App() {
                             {products.map(product => (
                                 
                                 <div className='product' key={product.id}>
-                                    <span>
-                                        Namn: {product.name}<br></br>
-                                        Pris: {product.price} <br></br>
-                                        Id: {product.id}
                                         <img className='product-image' src={product.image}></img>
-                                    </span>
-                                    <button onClick={() => removeProduct(product.id)}>Remove</button> </div>
+                                        <div className="product-text">
+                                        <h3>Namn: {product.name}</h3>
+                                        <p>Pris: {product.price}</p> 
+                                        <p>Id: {product.id}</p> 
+                                    <button className='remove-btn' onClick={() => removeProduct(product.id)}>Remove</button> </div>
+                                    </div>
                             ))}
                         </ul>
                     )

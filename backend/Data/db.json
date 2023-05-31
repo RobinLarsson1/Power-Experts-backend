@@ -1,24 +1,6 @@
 {
   "products": [
     {
-      "id": 339037,
-      "name": "Hasbullah",
-      "price": 1,
-      "image": "https://assets3.thrillist.com/v1/image/2494428/720x960/scale;webp=auto;jpeg_quality=60.jpg",
-      "tags": [
-        "Dagestani"
-      ]
-    },
-    {
-      "id": 765889,
-      "name": "Hasbullah",
-      "price": 1,
-      "image": "https://assets3.thrillist.com/v1/image/2494428/720x960/scale;webp=auto;jpeg_quality=60.jpg",
-      "tags": [
-        "Dagestani"
-      ]
-    },
-    {
       "id": 4,
       "name": "Chocolate skateboards",
       "price": 1099,
