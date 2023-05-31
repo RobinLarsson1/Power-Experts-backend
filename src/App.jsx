@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import Search from './search.jsx'
 import './App.css'
 
 function App() {
-    const [products, setProducts] = useState(null)
+    const [products, setProducts] = useState([])
     const [users, setUsers] = useState(null)
     const [errorMessage, setErrorMessage] = useState('')
+    const [search, setSearch] = useState('');
 
     const getProducts = async () => {
         // Ta bort eventuellt felmeddelande
@@ -90,6 +90,12 @@ function App() {
         }
     };
 
+    // Search
+    const handleSearch = (event) => {
+        setSearch(event.target.value)
+    }
+    const filterData = products.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase()))
 
 
     ///FRONTENDSIDAN
@@ -97,12 +103,15 @@ function App() {
     return (
         <div>
             <div >
-                <Search />
+                <input
+                    type="text"
+                    onChange={handleSearch}
+                />
                 {products
                     ? (
                         <ul className='wrapper'>
-                            {products.map(product => (
-                                
+                            {filterData.map(product => (
+
                                 <div className='product' key={product.id}>
                                     <span>
                                         Namn: {product.name}<br></br>
