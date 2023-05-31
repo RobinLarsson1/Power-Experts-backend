@@ -44,18 +44,36 @@
     color: #888;
 }
 
-li{
-    display: flex;
-    width: 100px;
+.product, .user{
+    width: 175px;
     border: 1px solid;
+    padding: 10px;
+    margin: 10px;
     transition: border-color 0.25s;
 }
 
-li:hover {
-    border-color: #646cff;
+.product{
+    background-color: grey;
+}
+.user{
+    background-color: lightblue;
 }
 
-.product-wrapper,.user-wrapper{
+.product:hover {
+    border-color: #646cff;
+}
+.user:hover{
+    border-color: orange
+}
+
+.wrapper{
     display: flex;
-    width: 500px;
+    flex-wrap: wrap;
+}
+
+.product-image{
+    margin-left: 0;
+    width: 150px;
+    height: 175px;
+    padding: 10px;
 }
