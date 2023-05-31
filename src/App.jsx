@@ -105,7 +105,7 @@ function App() {
                 </div>
                 <div className="hero-cat">
                     <p className="cat-p">Produkter</p>
-                    <BiSearchAlt2 />
+                    <BiSearchAlt2 className='search-logo'/>
                 </div>
             </header>
             <img src="https://static01.nyt.com/images/2023/01/29/multimedia/26skateboarding-nyc-v-01-with-caption/26skateboarding-nyc-v-01-mzjb-superJumbo.jpg?quality=75&auto=webp" alt="hero-image" className='hero-img' />
