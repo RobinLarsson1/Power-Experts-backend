@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Search from './search.jsx'
 import './App.css'
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 
     return (
         <div>
+            <Search />
             <div>
                 <button onClick={getProducts}> Give me some products! </button>
             </div>
