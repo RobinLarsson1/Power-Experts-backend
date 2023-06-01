@@ -123,7 +123,6 @@ function App() {
 
         const chosenTag = products.filter((item) =>
             item.tags.includes(selectedTag))
-        console.log(chosenTag);
     }
     const handleCategory = () => {
         setProductTag(!productTag)
