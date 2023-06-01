@@ -11,16 +11,6 @@
       ]
     },
     {
-      "id": 5,
-      "name": "Chocolate skateboards",
-      "price": 1099,
-      "image": "https://www.boardstore.com.au/assets/thumbL/1055557.rtershy.8125.png?20201231141930",
-      "tags": [
-        "Skateboard",
-        "Popsicle   "
-      ]
-    },
-    {
       "id": 6,
       "name": "Chocolate skateboards",
       "price": 1099,
@@ -99,15 +89,6 @@
       "tags": [
         "Longboard ",
         "Classic "
-      ]
-    },
-    {
-      "id": 988498,
-      "name": "budi",
-      "price": 3425,
-      "image": "aiobfpiufb.com",
-      "tags": [
-        "monke"
       ]
     },
     {
