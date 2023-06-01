@@ -419,12 +419,19 @@ function App() {
                         <div>
                             {showAddProduct === true ? (
                                 <section className='add-products-section'>
-                                    <form onSubmit={handleSubmitProduct} action="submit" className='add-product-form'>
-                                        <input className='add-product-input' type="text" placeholder='Namn på produkt' value={productName} onChange={e => setProductName(e.target.value)} />
-                                        <input className='add-product-input' type="number" placeholder='Pris' value={productPrice} onChange={e => setProductPrice(e.target.value)} />
-                                        <input className='add-product-input' type="text" placeholder='URL till bild' value={productImage} onChange={e => setProductImage(e.target.value)} />
-                                        <input className='add-product-input' type="text" placeholder='Tags' value={productTag} onChange={e => setProductTag(e.target.value)} />
-                                        <button type="submit" className='add-product-btn' onClick={() => setShowAddProduct(false)}>Add Product</button>
+                                    <form onSubmit={handleSubmitProduct
+                                    } action="submit">
+                                        <label htmlFor="Name">Produktnamn</label>
+                                        <input type="text" value={productName} onChange={e => setProductName(e.target.value)} />
+                                        <label htmlFor="Price">Pris</label>
+                                        <input type="number" value={productPrice} onChange={e => setProductPrice(e.target.value)} />
+
+                                        <label htmlFor="image">Url till bild</label>
+                                        <input type="text" value={productImage} onChange={e => setProductImage(e.target.value)} />
+
+                                        <label htmlFor="tags">Tags</label>
+                                        <input type="text" value={productTag} onChange={e => setProductTag(e.target.value)} />
+                                        <button type="submit">Add Product</button>
                                     </form>
                                 </section>
                             ) : null}
