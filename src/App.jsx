@@ -30,6 +30,7 @@ function App() {
     const [originalContent, setOriginalContent] = useState('products');
     const [showAddProduct, setShowAddProduct] = useState('false')
 
+    const [visibleTagButton, setVisibleTagButton] = useState(true)
     const [visibleTag, setVisibleTag] = useState(false)
     const [productTag, setProductTag] = useState('')
     const [displayTag, setDisplayTag] = useState('')
@@ -67,6 +68,9 @@ function App() {
     const handleContentChange = (newContent) => {
         if (newContent !== content) {
             setContent(newContent);
+            setDisplayTag('')
+            setVisibleTag(false)
+            setVisibleTagButton(!visibleTagButton)
         } else {
             setContent(originalContent);
         }
@@ -146,9 +150,22 @@ function App() {
     const filterData = products.filter((item) =>
         item.name.toLowerCase().includes(search.toLowerCase()))
 
+    // Tags
+    const handletag = (event) => {
+        const selectedTag = event.target.textContent
+        setDisplayTag(selectedTag)
+    }
+    const handleCategory = () => {
+        setVisibleTag(!visibleTag)
+    }
+
+    const allProducts = () => {
+        setDisplayTag(false)
+    }
+
 
     // ENDPOINT POST PRODUCT
-   
+
     const addProduct = async (productName, productPrice, productImage, productTag) => {
         setErrorMessage('');
         try {
@@ -187,7 +204,7 @@ function App() {
         }
     };
 
-    
+
 
     const handleSubmitProducts = async (event) => {
         event.preventDefault()
@@ -206,60 +223,60 @@ function App() {
     }
 
 
-        // ENDPOINT POST USER
-        const addUser = async (userName, userPassword) => {
-            setErrorMessage('');
-            try {
-                const response = await fetch(`/api/users`, { //Queryn var felaktig, en ${} var ej nödvändig då vi anropar det vi ber om i bodyn.
-                    method: 'POST',
-                    body: JSON.stringify({
-                        name: userName,
-                        password: userPassword, // 400 då number inte hade rätt typeOf
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                if (response.status === 200) {
-                    // user successfully added
-                    // Perform any necessary actions after adding the product
-                    getUsers()
-                } else if (response.status === 400) {
-                    // Invalid request
-                    const errorText = await response.text();
-                    setErrorMessage(errorText);
-                } else if (response.status === 404) {
-                    // user not found
-                    const errorText = await response.text();
-                    setErrorMessage(errorText);
-                } else {
-                    // Other error occurred
-                    throw new Error('An error occurred while adding the user');
+    // ENDPOINT POST USER
+    const addUser = async (userName, userPassword) => {
+        setErrorMessage('');
+        try {
+            const response = await fetch(`/api/users`, { //Queryn var felaktig, en ${} var ej nödvändig då vi anropar det vi ber om i bodyn.
+                method: 'POST',
+                body: JSON.stringify({
+                    name: userName,
+                    password: userPassword, // 400 då number inte hade rätt typeOf
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-            } catch (error) {
-                // Handle network or fetch error
-                setErrorMessage(error.message);
-                console.log('Error in adding user');
+            });
+            if (response.status === 200) {
+                // user successfully added
+                // Perform any necessary actions after adding the product
+                getUsers()
+            } else if (response.status === 400) {
+                // Invalid request
+                const errorText = await response.text();
+                setErrorMessage(errorText);
+            } else if (response.status === 404) {
+                // user not found
+                const errorText = await response.text();
+                setErrorMessage(errorText);
+            } else {
+                // Other error occurred
+                throw new Error('An error occurred while adding the user');
             }
-        };
-    
-        // Submit Event for Form
-        const handleSubmitUser = async (event) => {
-            event.preventDefault()
-            try {
-                setUsername('')
-                setUserPassword('')
-                // adder indikation på att frontend arbetar mot backend loader tex
-                await addUser(userName, userPassword)
-                // töm input fält efteråt
-                console.log('User added');
-            } catch (error) {
-                console.log(error);
-            }
+        } catch (error) {
+            // Handle network or fetch error
+            setErrorMessage(error.message);
+            console.log('Error in adding user');
         }
+    };
 
-        
-    
+    // Submit Event for Form
+    const handleSubmitUser = async (event) => {
+        event.preventDefault()
+        try {
+            setUsername('')
+            setUserPassword('')
+            // adder indikation på att frontend arbetar mot backend loader tex
+            await addUser(userName, userPassword)
+            // töm input fält efteråt
+            console.log('User added');
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+
     ///FRONTENDSIDAN
 
 
@@ -304,58 +321,114 @@ function App() {
                     </div>
 
                     <div>
-                    {showAddProduct === true ? (
-                        <section className='add-products-section'>
-                            <form action="submit" className='add-product-form'>
-                                <input className='add-product-input' type="text" placeholder='Namn på produkt' value={productName} onChange={e => setProductName(e.target.value)} />
-                                <input className='add-product-input' type="number" placeholder='Pris' value={productPrice} onChange={e => setProductPrice(e.target.value)} />
-                                <input className='add-product-input' type="text" placeholder='URL till bild' value={productImage} onChange={e => setProductImage(e.target.value)} />
-                                <input className='add-product-input' type="text" placeholder='Tags' value={productTag} onChange={e => setProductTag(e.target.value)} />
-                                <button type="submit" className='add-product-btn' onClick={handleSubmitProducts}>Add Product</button>
-                            </form>
-                        </section>
-                    ) : null}
-                </div>
-                    {content === 'products'
-                        ? (
+                        {showAddProduct === true ? (
+                            <section className='add-products-section'>
+                                <form action="submit" className='add-product-form'>
+                                    <input className='add-product-input' type="text" placeholder='Namn på produkt' value={productName} onChange={e => setProductName(e.target.value)} />
+                                    <input className='add-product-input' type="number" placeholder='Pris' value={productPrice} onChange={e => setProductPrice(e.target.value)} />
+                                    <input className='add-product-input' type="text" placeholder='URL till bild' value={productImage} onChange={e => setProductImage(e.target.value)} />
+                                    <input className='add-product-input' type="text" placeholder='Tags' value={productTag} onChange={e => setProductTag(e.target.value)} />
+                                    <button type="submit" className='add-product-btn' onClick={handleSubmitProducts}>Add Product</button>
+                                </form>
+                            </section>
+                        ) : null}
+                    </div>
+
+                    {/* Handle tags */}
+                    <nav className='category-container'>
+                       {visibleTagButton && <button className='category-button' onClick={handleCategory}>
+                            Kategori
+                        </button>}
+                        <ul className='category-ul'>
+                            {visibleTag && <li className={'category-tags'} onClick={allProducts}>Alla produkter</li>}
+                            {visibleTag &&
+                                products.reduce((uniqueTags, product) => {
+                                    product.tags.forEach((productTag) => {
+                                        if (!uniqueTags.includes(productTag)) {
+                                            uniqueTags.push(productTag);
+                                        }
+                                    });
+                                    return uniqueTags;
+                                }, []).map((uniqueTag) => (
+                                    <li
+                                        className={`category-tags ${uniqueTag === displayTag}`}
+                                        key={uniqueTag}
+                                        onClick={handletag}
+                                    >
+                                        {uniqueTag}
+                                    </li>
+                                ))}
+
+                        </ul>
+                    </nav>
+                    {/* Display selected tags */}
+                    {displayTag ? (
+                        <div className='selected-tags'>
                             <ul className='wrapper'>
-                                {filterData.map(product => (
-                                    <div className='product' key={product.id}>
-                                        <img className='product-image' src={product.image}></img>
-                                        <div className="product-text">
-                                            <h3>Namn: {product.name}</h3>
-                                            <p>Pris: {product.price}</p>
-                                            <p>Id: {product.id}</p>
-                                            <div className='remove-btn-div'>
-                                                <button className='remove-btn' onClick={() => removeProduct(product.id)}>Remove</button>
+                                {products.map((product) =>
+                                    product.tags.includes(displayTag) ? (
+                                        <div className='product' key={product.id}>
+                                            <img className='product-image' src={product.image}></img>
+                                            <div className='product-text'>
+                                                <h3>Namn: {product.name}</h3>
+                                                <p>Pris: {product.price}</p>
+                                                <p>Id: {product.id}</p>
+                                                <div className='remove-btn-div'>
+                                                    <button
+                                                        className='remove-btn'
+                                                        onClick={() => removeProduct(product.id)}
+                                                    >
+                                                        Remove
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ) : null
+                                )}
                             </ul>
-                        ) : content === 'users' ? (
-                            // User content
-                            <ul className="user-wrapper">
-                                {users.map(user => (
-                                    <div className='user-card' key={user.id}>
-                                        <FaUserAlt className='user-icon' />
-                                        <div className="user text">
-                                            <p className='username'>{user.name}</p>
-                                            <p className='user-id'>ID: {user.id}</p>
+                        </div>
+                    ) :
+                        content === 'products'
+                            ? (
+                                <ul className='wrapper'>
+                                    {filterData.map(product => (
+                                        <div className='product' key={product.id}>
+                                            <img className='product-image' src={product.image}></img>
+                                            <div className="product-text">
+                                                <h3>Namn: {product.name}</h3>
+                                                <p>Pris: {product.price}</p>
+                                                <p>Id: {product.id}</p>
+                                                <div className='remove-btn-div'>
+                                                    <button className='remove-btn' onClick={() => removeProduct(product.id)}>Remove</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <button onClick={() => removeUser(user.id)} className='remove-user'>Remove user</button>
-                                    </div>
-                                ))}
-                                 <form action="submit">
-                                <label htmlFor="Name">Användarnamn</label>
-                                <input type="text" value={userName} onChange={e => setUsername(e.target.value)} />
-                                <label htmlFor="Password">Password</label>
-                                <input type="text" value={userPassword} onChange={e => setUserPassword(e.target.value)} />
-                                <button type="submit" onClick={handleSubmitUser}>Addera Användare</button>
-                            </form>
-                            </ul>
-                        )
-                            : <p> No users yet... </p>}
+                                    ))}
+                                </ul>
+
+                            ) : content === 'users' ? (
+                                // User content
+                                <ul className="user-wrapper">
+                                    {users.map(user => (
+                                        <div className='user-card' key={user.id}>
+                                            <FaUserAlt className='user-icon' />
+                                            <div className="user text">
+                                                <p className='username'>{user.name}</p>
+                                                <p className='user-id'>ID: {user.id}</p>
+                                            </div>
+                                            <button onClick={() => removeUser(user.id)} className='remove-user'>Remove user</button>
+                                        </div>
+                                    ))}
+                                    <form action="submit">
+                                        <label htmlFor="Name">Användarnamn</label>
+                                        <input type="text" value={userName} onChange={e => setUsername(e.target.value)} />
+                                        <label htmlFor="Password">Password</label>
+                                        <input type="text" value={userPassword} onChange={e => setUserPassword(e.target.value)} />
+                                        <button type="submit" onClick={handleSubmitUser}>Addera Användare</button>
+                                    </form>
+                                </ul>
+                            )
+                                : <p> No users yet... </p>}
                     {errorMessage !== '' ? <p> Ett fel har inträffat! {errorMessage} </p> : null}
                 </div>
             </div >
