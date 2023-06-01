@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import './hero.css'
-import { BiSearchAlt2 } from 'react-icons/bi';
+import './products.css'
+import './users.css'
+import './addproducts.css'
+import { FaUserAlt } from 'react-icons/fa';
+
 
 function App() {
     const [products, setProducts] = useState([])
@@ -12,6 +16,9 @@ function App() {
     const [productPrice, setProductPrice] = useState('')
     const [productImage, setProductImage] = useState('')
     const [productTag, setProductTag] = useState('')
+    const [content, setContent] = useState('products')
+    const [originalContent, setOriginalContent] = useState('products');
+    const [showAddProduct, setShowAddProduct] = useState('false')
 
 
     // ENDPOINT GET PRODUCT
@@ -42,6 +49,16 @@ function App() {
 
         }
     }
+
+    const handleContentChange = (newContent) => {
+        if (newContent !== content) {
+            setContent(newContent);
+        } else {
+            setContent(originalContent);
+        }
+    };
+
+
 
     // useEffect för att hämta data efter events
     useEffect(() => {
@@ -172,100 +189,97 @@ function App() {
     }
     ///FRONTENDSIDAN
 
-    
+
     return (
         <div>
             <header className='header'>
                 <div className="hero-text">
-                <h1 className="hero-h1">POWER EXPERTS</h1>
-                <p className="hero-p">BACKEND - PROJEKT</p>
-                <hr className='hero-hr'/>
+                    <h1 className="hero-h1">POWER EXPERTS</h1>
+                    <p className="hero-p">BACKEND - PROJEKT</p>
+                    <hr className='hero-hr' />
                 </div>
                 <div className="hero-cat">
-                    <p className="cat-p">Produkter</p>
-                    <BiSearchAlt2 className='search-logo'/>
+                    <p className="cat-p" onClick={() => handleContentChange('products')}>Produkter</p>
+                    <FaUserAlt className='search-logo' onClick={() => handleContentChange('users')} />
                 </div>
             </header>
             <img src="https://static01.nyt.com/images/2023/01/29/multimedia/26skateboarding-nyc-v-01-with-caption/26skateboarding-nyc-v-01-mzjb-superJumbo.jpg?quality=75&auto=webp" alt="hero-image" className='hero-img' />
 
             <div className='produkt-div'>
-                
+
                 {/* <button onClick={getProducts}> Give me some products! </button> */}
             </div>
             <div className='product-wrapper'>
                 <section className="product-header">
-                    <hr className='product-hr'/>
-                    <h2 className='product-header-h2'>PRODUKTER</h2>
-                    <hr className='product-hr'/>
+                    <hr className='product-hr' />
+                    <h2 className='product-header-h2'>{content === 'products' ? 'PRODUKTER' : content === 'users' ? 'ANVÄNDARE' : ''}</h2>
+                    <hr className='product-hr' />
                 </section>
-            <div>
-                <form onSubmit={handleSubmit
-                } action="submit">
-                    <label htmlFor="Name">Produktnamn</label>
-                    <input type="text" value={productName} onChange={e => setProductName(e.target.value)} />
-                    <label htmlFor="Price">Pris</label>
-                    <input type="number" value={productPrice} onChange={e => setProductPrice(e.target.value)} />
-
-                    <label htmlFor="image">Url till bild</label>
-                    <input type="text" value={productImage} onChange={e => setProductImage(e.target.value)} />
-
-                    <label htmlFor="tags">Tags</label>
-                    <input type="text" value={productTag} onChange={e => setProductTag(e.target.value)} />
-                    <button type="submit">Add Product</button>
-                </form>
-            </div>
-            <div >
-                <div className='search-div'>
-                <input
-                    type="text"
-                    placeholder='Sök efter produkt...'
-                    onChange={handleSearch}
-                    className='search-bar'
-                />
+                <div className="add-product-div">
+                    <h3 className='add-text' onClick={() => setShowAddProduct(true)}>Lägg till produkt +</h3>
                 </div>
-                {products
-                    ? (
-                        <ul className='wrapper'>
-                            {filterData.map(product => (
-                                <div className='product' key={product.id}>
+                <div >
+                    <div className='search-div'>
+                        {content === 'products' && (
+                            <input
+                                type="text"
+                                placeholder='Sök efter produkt...'
+                                onChange={handleSearch}
+                                className='search-bar'
+                            />
+                        )}
+                    </div>
+
+                    <div>
+                    {showAddProduct === true ? (
+                        <section className='add-products-section'>
+                            <form onSubmit={handleSubmit} action="submit" className='add-product-form'>
+                                <input className='add-product-input' type="text" placeholder='Namn på produkt' value={productName} onChange={e => setProductName(e.target.value)} />
+                                <input className='add-product-input' type="number" placeholder='Pris' value={productPrice} onChange={e => setProductPrice(e.target.value)} />
+                                <input className='add-product-input' type="text" placeholder='URL till bild' value={productImage} onChange={e => setProductImage(e.target.value)} />
+                                <input className='add-product-input' type="text" placeholder='Tags' value={productTag} onChange={e => setProductTag(e.target.value)} />
+                                <button type="submit" className='add-product-btn' onClick={() => setShowAddProduct(false)}>Add Product</button>
+                            </form>
+                        </section>
+                    ) : null}
+                </div>
+                    {content === 'products'
+                        ? (
+                            <ul className='wrapper'>
+                                {filterData.map(product => (
+                                    <div className='product' key={product.id}>
                                         <img className='product-image' src={product.image}></img>
                                         <div className="product-text">
-                                        <h3>Namn: {product.name}</h3>
-                                        <p>Pris: {product.price}</p> 
-                                        <p>Id: {product.id}</p> 
-                                        <div className='remove-btn-div'>
-                                    <button className='remove-btn' onClick={() => removeProduct(product.id)}>Remove</button> 
+                                            <h3>Namn: {product.name}</h3>
+                                            <p>Pris: {product.price}</p>
+                                            <p>Id: {product.id}</p>
+                                            <div className='remove-btn-div'>
+                                                <button className='remove-btn' onClick={() => removeProduct(product.id)}>Remove</button>
+                                            </div>
+                                        </div>
                                     </div>
+                                ))}
+                            </ul>
+                        ) : content === 'users' ? (
+                            // User content
+                            <ul className="user-wrapper">
+                                {users.map(user => (
+                                    <div className='user-card' key={user.id}>
+                                        <FaUserAlt className='user-icon' />
+                                        <div className="user text">
+                                            <p className='username'>{user.name}</p>
+                                            <p className='user-id'>ID: {user.id}</p>
+                                        </div>
+                                        <button onClick={() => removeUser(user.id)} className='remove-user'>Remove user</button>
                                     </div>
-                                    </div>
-                            ))}
-                        </ul>
-                    )
-                    : <p> No products yet... </p>
-                }
-                {errorMessage !== '' ? <p> Ett fel har inträffat! {errorMessage} </p> : null}
-            </div >
-            <div >
-                <div>
-                    {/* <button onClick={getUsers}> Show me the users! </button> */}
+                                ))}
+                            </ul>
+                        )
+                            : <p> No users yet... </p>}
+                    {errorMessage !== '' ? <p> Ett fel har inträffat! {errorMessage} </p> : null}
                 </div>
-                {users
-                    ? (
-                        <ul className='wrapper'>
-                            {users.map(user => (
-                                <div className='user' key={user.id}> <span>
-                                    Användarnamn: {user.name}
-                                    Användar ID: {user.id}
-                                </span>
-                                    <button onClick={() => removeUser(user.id)}>Remove</button> </div>
-                            ))}
-                        </ul>
-                    )
-                    : <p> No users yet... </p>}
-                {errorMessage !== '' ? <p> Ett fel har inträffat! {errorMessage} </p> : null}
-            </div>
-        </div >
-</div>
+            </div >
+        </div>
     )
 }
 
