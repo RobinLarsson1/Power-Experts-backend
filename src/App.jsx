@@ -4,6 +4,7 @@ import './hero.css'
 import './products.css'
 import './users.css'
 import './addproducts.css'
+import './addusers.css'
 import { FaUserAlt } from 'react-icons/fa';
 // import { addProduct } from './endpoints/POST'
 
@@ -336,7 +337,7 @@ function App() {
 
                     {/* Handle tags */}
                     <nav className='category-container'>
-                       {visibleTagButton && <button className='category-button' onClick={handleCategory}>
+                        {visibleTagButton && <button className='category-button' onClick={handleCategory}>
                             Kategori
                         </button>}
                         <ul className='category-ul'>
@@ -419,12 +420,11 @@ function App() {
                                             <button onClick={() => removeUser(user.id)} className='remove-user'>Remove user</button>
                                         </div>
                                     ))}
-                                    <form action="submit">
-                                        <label htmlFor="Name">Användarnamn</label>
-                                        <input type="text" value={userName} onChange={e => setUsername(e.target.value)} />
-                                        <label htmlFor="Password">Password</label>
-                                        <input type="text" value={userPassword} onChange={e => setUserPassword(e.target.value)} />
-                                        <button type="submit" onClick={handleSubmitUser}>Addera Användare</button>
+                                    <form className='add-product-form' action="submit">
+                                        <input className='add-user-input' placeholder='Ange ett nytt användarnamn' type="text" value={userName} onChange={e => setUsername(e.target.value)} />
+                                        <input className='add-user-input'
+                                            placeholder='Ange ett nytt lösennord' type="text" value={userPassword} onChange={e => setUserPassword(e.target.value)} />
+                                        <button className='add-user-btn' type="submit" onClick={handleSubmitUser}>Lägg till ny Användare</button>
                                     </form>
                                 </ul>
                             )

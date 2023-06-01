@@ -171,15 +171,6 @@
       "tags": [
         "Surfboard"
       ]
-    },
-    {
-      "id": 978778,
-      "name": "test1",
-      "price": 444,
-      "image": "gdsgsd",
-      "tags": [
-        "gsdgsdg"
-      ]
     }
   ],
   "users": [
@@ -194,9 +185,14 @@
       "id": 3
     },
     {
-      "name": "afsafsa",
-      "password": "asfasfa",
-      "id": 74549
+      "name": "MonkeTwo",
+      "password": "dinmamma",
+      "id": 55294
+    },
+    {
+      "name": "drickavaniljsåsmedsugrör",
+      "password": "fetto",
+      "id": 75606
     }
   ]
 }

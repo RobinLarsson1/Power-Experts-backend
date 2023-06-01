@@ -12,34 +12,39 @@
 	justify-content: flex-start;
 	margin: 2em 1em;
 	font-family: 'Nanum Gothic Coding', monospace;
+    text-align: center;
 	
 }
 
 .add-product-div {
-	width: 100%;
+    width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	
 }
 .add-text {
-	margin: 0em 0 2em 0;
+    margin: 0em 0 2em 0;
 	color: #32C181;
 	font-family: 'Nanum Gothic Coding', monospace;
 	cursor: pointer;
 }
 
 .product-image {
-	width: 18em;
+    width: 18em;
 	object-fit: cover;
 	background-color: #ffffff;
 	padding: 1.5em;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 .product-text {
-	background-color: #32C181;
+    background-color: #32C181;
 	width: 100%;
 	height: 6em;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .product-header {
@@ -54,21 +59,21 @@
 	width: 25vw;
 }
 .product-header-h2 {
-	margin: 1em 1em;
+    margin: 1em 1em;
 	font-size: 36px;
 	color: #ffffff;
 	font-family: 'Imbue', serif;
 }
 
 .search-div {
-	width: 100%;
+    width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .search-bar {
-	width: 25em;
+    width: 25em;
 	height: 1.75em;
 	background-color: #212121;
 	border: 2px solid #ffffff;
@@ -79,6 +84,25 @@
 
 
 .remove-btn {
-	padding: 8px 16px;
+    padding: 8px 16px;
 	border: none;
+    border-radius: 3px;
+    margin: 5px;
+}
+
+.category-button{
+    padding: 8px 16px;
+    color: #32C181;
+    background-color: #212121;
+    border-radius: 2px;
+    margin-left: 5px;
+    font-family: 'Nanum Gothic Coding', monospace;
+
+}
+
+.category-ul{
+    background-color: #212121;
+    color: #32C181;
+    font-family: 'Nanum Gothic Coding', monospace;
+    border: none;
 }
