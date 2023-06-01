@@ -61,6 +61,14 @@ function App() {
         }
     }
 
+    const handleContentChange = (newContent) => {
+        if (newContent !== content) {
+            setContent(newContent);
+        } else {
+            setContent(originalContent);
+        }
+    };
+
     // useEffect för att hämta data efter events
     useEffect(() => {
         getProducts()
