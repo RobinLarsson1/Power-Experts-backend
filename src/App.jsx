@@ -295,7 +295,7 @@ function App() {
                         </div>
                     ) : (
                         <ul className='wrapper'>
-                            {products.map((product) => (
+                            {filterData.map((product) => (
                                 <div className='product' key={product.id}>
                                     <img className='product-image' src={product.image}></img>
                                     <div className='product-text'>
