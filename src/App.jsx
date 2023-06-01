@@ -15,7 +15,6 @@ function App() {
     const [productName, setProductName] = useState('')
     const [productPrice, setProductPrice] = useState('')
     const [productImage, setProductImage] = useState('')
-    const [productTag, setProductTag] = useState('')
     const [userName, setUsername] = useState('')
     const [userPassword, setUserPassword] = useState('')
     const [productId, setProductId] = useState('');
@@ -30,6 +29,8 @@ function App() {
     const [originalContent, setOriginalContent] = useState('products');
     const [showAddProduct, setShowAddProduct] = useState('false')
 
+    const [productTag, setProductTag] = useState(false)
+    const [displayTag, setDisplayTag] = useState('')
 
 
     // ENDPOINT GET PRODUCT
@@ -129,6 +130,18 @@ function App() {
     const filterData = products.filter((item) =>
         item.name.toLowerCase().includes(search.toLowerCase()))
 
+    // Tags
+    const handletag = (event) => {
+        const selectedTag = event.target.textContent
+        setDisplayTag(selectedTag)
+    }
+    const handleCategory = () => {
+        setProductTag(!productTag)
+    }
+
+    const allProducts = () => {
+        setDisplayTag(false)
+    }
 
     // ENDPOINT POST PRODUCT
     const addProduct = async (productName, productPrice, productImage, productTag) => {
@@ -361,131 +374,188 @@ function App() {
 
 
     return (
-        <div>
-            <header className='header'>
-                <div className="hero-text">
-                    <h1 className="hero-h1">POWER EXPERTS</h1>
-                    <p className="hero-p">BACKEND - PROJEKT</p>
-                    <hr className='hero-hr' />
-                </div>
-                <div className="hero-cat">
-                    <p className="cat-p" onClick={() => handleContentChange('products')}>Produkter</p>
-                    <FaUserAlt className='search-logo' onClick={() => handleContentChange('users')} />
-                </div>
-            </header>
-            <img src="https://static01.nyt.com/images/2023/01/29/multimedia/26skateboarding-nyc-v-01-with-caption/26skateboarding-nyc-v-01-mzjb-superJumbo.jpg?quality=75&auto=webp" alt="hero-image" className='hero-img' />
-
-            <div className='product-wrapper'>
-                <section className="product-header">
-                    <hr className='product-hr' />
-                    <h2 className='product-header-h2'>{content === 'products' ? 'PRODUKTER' : content === 'users' ? 'ANVÄNDARE' : ''}</h2>
-                    <hr className='product-hr' />
-                </section>
-                <div className="add-product-div">
-                    <h3 className='add-text' onClick={() => setShowAddProduct(true)}>Lägg till produkt +</h3>
-                </div>
-                <div >
-                    <div className='search-div'>
-                        {content === 'products' && (
-                            <input
-                                type="text"
-                                placeholder='Sök efter produkt...'
-                                onChange={handleSearch}
-                                className='search-bar'
-                            />
-                        )}
+        <>
+            <div>
+                <header className='header'>
+                    <div className="hero-text">
+                        <h1 className="hero-h1">POWER EXPERTS</h1>
+                        <p className="hero-p">BACKEND - PROJEKT</p>
+                        <hr className='hero-hr' />
                     </div>
-
-                    <div>
-                        {showAddProduct === true ? (
-                            <section className='add-products-section'>
-                                <form onSubmit={handleSubmitProduct} action="submit" className='add-product-form'>
-                                    <input className='add-product-input' type="text" placeholder='Namn på produkt' value={productName} onChange={e => setProductName(e.target.value)} />
-                                    <input className='add-product-input' type="number" placeholder='Pris' value={productPrice} onChange={e => setProductPrice(e.target.value)} />
-                                    <input className='add-product-input' type="text" placeholder='URL till bild' value={productImage} onChange={e => setProductImage(e.target.value)} />
-                                    <input className='add-product-input' type="text" placeholder='Tags' value={productTag} onChange={e => setProductTag(e.target.value)} />
-                                    <button type="submit" className='add-product-btn' onClick={() => setShowAddProduct(false)}>Add Product</button>
-                                </form>
-                            </section>
-                        ) : null}
+                    <div className="hero-cat">
+                        <p className="cat-p" onClick={() => handleContentChange('products')}>Produkter</p>
+                        <FaUserAlt className='search-logo' onClick={() => handleContentChange('users')} />
                     </div>
-                    {content === 'products'
-                        ? (
+                </header>
+                <img src="https://static01.nyt.com/images/2023/01/29/multimedia/26skateboarding-nyc-v-01-with-caption/26skateboarding-nyc-v-01-mzjb-superJumbo.jpg?quality=75&auto=webp" alt="hero-image" className='hero-img' />
+
+                <div className='product-wrapper'>
+                    <section className="product-header">
+                        <hr className='product-hr' />
+                        <h2 className='product-header-h2'>{content === 'products' ? 'PRODUKTER' : content === 'users' ? 'ANVÄNDARE' : ''}</h2>
+                        <hr className='product-hr' />
+                    </section>
+                    <div className="add-product-div">
+                        <h3 className='add-text' onClick={() => setShowAddProduct(true)}>Lägg till produkt +</h3>
+                    </div>
+                    <div >
+                        <div className='search-div'>
+                            {content === 'products' && (
+                                <input
+                                    type="text"
+                                    placeholder='Sök efter produkt...'
+                                    onChange={handleSearch}
+                                    className='search-bar'
+                                />
+                            )}
+                        </div>
+
+
+
+
+
+
+
+                        <div>
+                            {showAddProduct === true ? (
+                                <section className='add-products-section'>
+                                    <form onSubmit={handleSubmitProduct} action="submit" className='add-product-form'>
+                                        <input className='add-product-input' type="text" placeholder='Namn på produkt' value={productName} onChange={e => setProductName(e.target.value)} />
+                                        <input className='add-product-input' type="number" placeholder='Pris' value={productPrice} onChange={e => setProductPrice(e.target.value)} />
+                                        <input className='add-product-input' type="text" placeholder='URL till bild' value={productImage} onChange={e => setProductImage(e.target.value)} />
+                                        <input className='add-product-input' type="text" placeholder='Tags' value={productTag} onChange={e => setProductTag(e.target.value)} />
+                                        <button type="submit" className='add-product-btn' onClick={() => setShowAddProduct(false)}>Add Product</button>
+                                    </form>
+                                </section>
+                            ) : null}
+                        </div>
+
+                        {/* Handle tags */}
+                        <nav className='category-container'>
+                            <button className='category-button' onClick={handleCategory}>
+                                Kategori
+                            </button>
+                            <ul className='category-ul'>
+                                {productTag && <li className={'category-tags'} onClick={allProducts}>Alla produkter</li>}
+                                {productTag &&
+                                    products.reduce((uniqueTags, product) => {
+                                        product.tags.forEach((productTag) => {
+                                            if (!uniqueTags.includes(productTag)) {
+                                                uniqueTags.push(productTag);
+                                            }
+                                        });
+                                        return uniqueTags;
+                                    }, []).map((uniqueTag) => (
+                                        <li
+                                            className={`category-tags ${uniqueTag === displayTag}`}
+                                            key={uniqueTag}
+                                            onClick={handletag}
+                                        >
+                                            {uniqueTag}
+                                        </li>
+                                    ))}
+
+                            </ul>
+                        </nav>
+
+
+                        {/* Display selected tags */}
+                        {displayTag ? (
+                            <div className='selected-tags'>
+                                <ul className='wrapper'>
+                                    {products.map((product) =>
+                                        product.tags.includes(displayTag) ? (
+                                            <div className='product' key={product.id}>
+                                                <img className='product-image' src={product.image}></img>
+                                                <div className='product-text'>
+                                                    <h3>Namn: {product.name}</h3>
+                                                    <p>Pris: {product.price}</p>
+                                                    <p>Id: {product.id}</p>
+                                                    <div className='remove-btn-div'>
+                                                        <button
+                                                            className='remove-btn'
+                                                            onClick={() => removeProduct(product.id)}
+                                                        >
+                                                            Remove
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ) : null
+                                    )}
+                                </ul>
+                            </div>
+                        ) : (
                             <ul className='wrapper'>
-                                {filterData.map(product => (
+                                {filterData.map((product) => (
                                     <div className='product' key={product.id}>
                                         <img className='product-image' src={product.image}></img>
-                                        <div className="product-text">
+                                        <div className='product-text'>
                                             <h3>Namn: {product.name}</h3>
                                             <p>Pris: {product.price}</p>
                                             <p>Id: {product.id}</p>
                                             <div className='remove-btn-div'>
-                                                <button className='remove-btn' onClick={() => removeProduct(product.id)}>Remove</button>
+                                                <button
+                                                    className='remove-btn'
+                                                    onClick={() => removeProduct(product.id)}
+                                                >
+                                                    Remove
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 ))}
                             </ul>
-                        ) : content === 'users' ? (
-                            // User content
-                            <ul className="user-wrapper">
-                                {users.map(user => (
-                                    <div className='user-card' key={user.id}>
-                                        <FaUserAlt className='user-icon' />
-                                        <div className="user text">
-                                            <p className='username'>{user.name}</p>
-                                            <p className='user-id'>ID: {user.id}</p>
-                                        </div>
-                                        <button onClick={() => removeUser(user.id)} className='remove-user'>Remove user</button>
-                                    </div>
-                                ))}
-                            </ul>
-                        )
-                            : <p> No users yet... </p>}
-                    {errorMessage !== '' ? <p> Ett fel har inträffat! {errorMessage} </p> : null}
-                </div>
-                <div>
-                    <form onSubmit={handleSubmitUser
-                    } action="submit">
-                        <label htmlFor="Name">Användarnamn</label>
-                        <input type="text" value={userName} onChange={e => setUsername(e.target.value)} />
-                        <label htmlFor="Password">Password</label>
-                        <input type="text" value={userPassword} onChange={e => setUserPassword(e.target.value)} />
-                        <button type="submit">Addera Användare</button>
-                    </form>
-                </div>
-                <div>
-                    <form onSubmit={handleSubmitEditProduct} action="submit">
-                        <label htmlFor="productID">Produkt ID</label>
-                        <input type="text" value={productId} onChange={e => setProductId(e.target.value)} />
-                        <label htmlFor="Name">Nytt Produktnamn</label>
-                        <input type="text" value={editProductName} onChange={e => setEditProductName(e.target.value)} />
-                        <label htmlFor="Price">Nytt Pris</label>
-                        <input type="number" value={editProductPrice} onChange={e => setEditProductPrice(e.target.value)} />
+                        )}
 
-                        <label htmlFor="image">Ny Url till bild</label>
-                        <input type="text" value={editProductImage} onChange={e => setEditProductImage(e.target.value)} />
+                        {products.length === 0 && <p>No products yet...</p>}
+                        {errorMessage !== '' && (
+                            <p>Ett fel har inträffat! {errorMessage}</p>
+                        )}
+                        <div>
+                            <form onSubmit={handleSubmitUser
+                            } action="submit">
+                                <label htmlFor="Name">Användarnamn</label>
+                                <input type="text" value={userName} onChange={e => setUsername(e.target.value)} />
+                                <label htmlFor="Password">Password</label>
+                                <input type="text" value={userPassword} onChange={e => setUserPassword(e.target.value)} />
+                                <button type="submit">Addera Användare</button>
+                            </form>
+                        </div>
+                        <div>
+                            <form onSubmit={handleSubmitEditProduct} action="submit">
+                                <label htmlFor="productID">Produkt ID</label>
+                                <input type="text" value={productId} onChange={e => setProductId(e.target.value)} />
+                                <label htmlFor="Name">Nytt Produktnamn</label>
+                                <input type="text" value={editProductName} onChange={e => setEditProductName(e.target.value)} />
+                                <label htmlFor="Price">Nytt Pris</label>
+                                <input type="number" value={editProductPrice} onChange={e => setEditProductPrice(e.target.value)} />
 
-                        <label htmlFor="tags">Ny Tag</label>
-                        <input type="text" value={editProductTag} onChange={e => setEditProductTag(e.target.value)} />
-                        <button type="submit">Ändra Product</button>
-                    </form>
-                </div>
-                <div>
-                    <form onSubmit={handleSubmitEditUser} action="submit">
-                        <label htmlFor="userID">Användar ID</label>
-                        <input type="text" value={userId} onChange={e => setUserId(e.target.value)} />
-                        <label htmlFor="Name">Nytt Användarnamn</label>
-                        <input type="text" value={editUserName} onChange={e => setEditUserName(e.target.value)} />
-                        <label htmlFor="Price">Nytt Lösenord</label>
-                        <input type="text" value={editUserPassword} onChange={e => setEditUserPassword(e.target.value)} />
+                                <label htmlFor="image">Ny Url till bild</label>
+                                <input type="text" value={editProductImage} onChange={e => setEditProductImage(e.target.value)} />
 
-                        <button type="submit">Ändra Användare</button>
-                    </form>
-                </div>
-            </div >
-        </div >
+                                <label htmlFor="tags">Ny Tag</label>
+                                <input type="text" value={editProductTag} onChange={e => setEditProductTag(e.target.value)} />
+                                <button type="submit">Ändra Product</button>
+                            </form>
+                        </div>
+                        <div>
+                            <form onSubmit={handleSubmitEditUser} action="submit">
+                                <label htmlFor="userID">Användar ID</label>
+                                <input type="text" value={userId} onChange={e => setUserId(e.target.value)} />
+                                <label htmlFor="Name">Nytt Användarnamn</label>
+                                <input type="text" value={editUserName} onChange={e => setEditUserName(e.target.value)} />
+                                <label htmlFor="Price">Nytt Lösenord</label>
+                                <input type="text" value={editUserPassword} onChange={e => setEditUserPassword(e.target.value)} />
+
+                                <button type="submit">Ändra Användare</button>
+                            </form>
+                        </div>
+                    </div >
+                </div >
+            </div>
+
+        </>
     )
 }
-
 export default App

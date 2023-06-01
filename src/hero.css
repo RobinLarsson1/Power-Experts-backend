@@ -153,3 +153,30 @@ body {
 	padding: 8px 16px;
 	border: none;
 }
+
+
+/* Category tags */
+.category-container {
+	position: relative;
+}
+
+
+.category-ul {
+	position: absolute;
+	color:#ffffff;
+	background-color: #212121;
+	border: 1px solid #ffffff;
+}
+
+.category-tags {
+	margin: 1em 0.5em;
+}
+
+.category-tags:hover {
+	background-color: #414040;
+}
+
+.category-button:hover,
+.category-tags:hover {
+	cursor: pointer;
+}
