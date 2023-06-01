@@ -4,9 +4,10 @@ import './hero.css'
 import { BiSearchAlt2 } from 'react-icons/bi';
 
 function App() {
-    const [products, setProducts] = useState(null)
+    const [products, setProducts] = useState([])
     const [users, setUsers] = useState(null)
     const [errorMessage, setErrorMessage] = useState('')
+    const [search, setSearch] = useState('');
 
     const getProducts = async () => {
         // Ta bort eventuellt felmeddelande
@@ -91,6 +92,12 @@ function App() {
         }
     };
 
+    // Search
+    const handleSearch = (event) => {
+        setSearch(event.target.value)
+    }
+    const filterData = products.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase()))
 
 
     ///FRONTENDSIDAN
@@ -121,11 +128,15 @@ function App() {
                     <hr className='product-hr'/>
                 </section>
             <div >
+                <input
+                    type="text"
+                    onChange={handleSearch}
+                />
                 {products
                     ? (
                         <ul className='wrapper'>
-                            {products.map(product => (
-                                
+                            {filterData.map(product => (
+
                                 <div className='product' key={product.id}>
                                         <img className='product-image' src={product.image}></img>
                                         <div className="product-text">
