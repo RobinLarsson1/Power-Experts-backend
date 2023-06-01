@@ -114,11 +114,42 @@ body {
 }
 
 .product-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-hr {
+    color: #ffffff;
+    margin: 0 1em;
+	width: 25vw;
+}
+.product-header-h2 {
+	margin: 1em 1em;
+	font-size: 36px;
+	color: #ffffff;
+	font-family: 'Imbue', serif;
+}
+
+.search-div {
+	width: 100%;
 	display: flex;
 	justify-content: center;
-	margin: 1em;
+	align-items: center;
 }
-.product-hr {
-	rotate: 90deg;
+
+.search-bar {
+	width: 25em;
+	height: 1.75em;
+	background-color: #212121;
+	border: 2px solid #ffffff;
+	border-radius: 2px;
+	padding: 5px;
 	color: #ffffff;
+}
+
+
+.remove-btn {
+	padding: 8px 16px;
+	border: none;
 }

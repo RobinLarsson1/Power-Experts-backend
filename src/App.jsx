@@ -124,14 +124,18 @@ function App() {
             <div className='product-wrapper'>
                 <section className="product-header">
                     <hr className='product-hr'/>
-                    <h2>Produkter</h2>
+                    <h2 className='product-header-h2'>PRODUKTER</h2>
                     <hr className='product-hr'/>
                 </section>
             <div >
+                <div className='search-div'>
                 <input
                     type="text"
+                    placeholder='Sök efter produkt...'
                     onChange={handleSearch}
+                    className='search-bar'
                 />
+                </div>
                 {products
                     ? (
                         <ul className='wrapper'>
@@ -143,7 +147,10 @@ function App() {
                                         <h3>Namn: {product.name}</h3>
                                         <p>Pris: {product.price}</p> 
                                         <p>Id: {product.id}</p> 
-                                    <button className='remove-btn' onClick={() => removeProduct(product.id)}>Remove</button> </div>
+                                        <div className='remove-btn-div'>
+                                    <button className='remove-btn' onClick={() => removeProduct(product.id)}>Remove</button> 
+                                    </div>
+                                    </div>
                                     </div>
                             ))}
                         </ul>
