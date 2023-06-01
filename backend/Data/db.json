@@ -120,15 +120,6 @@
       ]
     },
     {
-      "id": 988498,
-      "name": "budi",
-      "price": 3425,
-      "image": "aiobfpiufb.com",
-      "tags": [
-        "monke"
-      ]
-    },
-    {
       "id": 18,
       "name": "Naish kiteboards",
       "price": 4099,
@@ -216,6 +207,15 @@
       "image": "https://cdn.abicart.com/shop/26254/art54/h7127/178317127-origpic-489c91.jpg?max-width=500&max-height=500&quality=85&fmt=avif",
       "tags": [
         "Surfboard"
+      ]
+    },
+    {
+      "id": 978778,
+      "name": "Test 5",
+      "price": 555,
+      "image": "https://www.boardstore.com.au/assets/thumbL/1055557.rtershy.8125.png?20201231141930",
+      "tags": [
+        "Skateboard"
       ]
     }
   ],
