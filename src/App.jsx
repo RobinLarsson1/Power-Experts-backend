@@ -5,6 +5,7 @@ import './products.css'
 import './users.css'
 import './addproducts.css'
 import { FaUserAlt } from 'react-icons/fa';
+// import { addProduct } from './endpoints/POST'
 
 
 function App() {
@@ -15,10 +16,23 @@ function App() {
     const [productName, setProductName] = useState('')
     const [productPrice, setProductPrice] = useState('')
     const [productImage, setProductImage] = useState('')
-    const [productTag, setProductTag] = useState('')
+    const [userName, setUsername] = useState('')
+    const [userPassword, setUserPassword] = useState('')
+    const [productId, setProductId] = useState('');
+    const [userId, setUserId] = useState('')
+    const [editUserName, setEditUserName] = useState('')
+    const [editUserPassword, setEditUserPassword] = useState('')
+    const [editProductName, setEditProductName] = useState('')
+    const [editProductPrice, setEditProductPrice] = useState('')
+    const [editProductImage, setEditProductImage] = useState('')
+    const [editProductTag, setEditProductTag] = useState('')
     const [content, setContent] = useState('products')
     const [originalContent, setOriginalContent] = useState('products');
     const [showAddProduct, setShowAddProduct] = useState('false')
+
+    const [visibleTag, setVisibleTag] = useState(false)
+    const [productTag, setProductTag] = useState('')
+    const [displayTag, setDisplayTag] = useState('')
 
 
     // ENDPOINT GET PRODUCT
@@ -134,6 +148,7 @@ function App() {
 
 
     // ENDPOINT POST PRODUCT
+   
     const addProduct = async (productName, productPrice, productImage, productTag) => {
         setErrorMessage('');
         try {
@@ -172,7 +187,9 @@ function App() {
         }
     };
 
-    const handleSubmit = async (event) => {
+    
+
+    const handleSubmitProducts = async (event) => {
         event.preventDefault()
         try {
             setProductName('')
@@ -187,6 +204,62 @@ function App() {
             console.log(error);
         }
     }
+
+
+        // ENDPOINT POST USER
+        const addUser = async (userName, userPassword) => {
+            setErrorMessage('');
+            try {
+                const response = await fetch(`/api/users`, { //Queryn var felaktig, en ${} var ej nödvändig då vi anropar det vi ber om i bodyn.
+                    method: 'POST',
+                    body: JSON.stringify({
+                        name: userName,
+                        password: userPassword, // 400 då number inte hade rätt typeOf
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (response.status === 200) {
+                    // user successfully added
+                    // Perform any necessary actions after adding the product
+                    getUsers()
+                } else if (response.status === 400) {
+                    // Invalid request
+                    const errorText = await response.text();
+                    setErrorMessage(errorText);
+                } else if (response.status === 404) {
+                    // user not found
+                    const errorText = await response.text();
+                    setErrorMessage(errorText);
+                } else {
+                    // Other error occurred
+                    throw new Error('An error occurred while adding the user');
+                }
+            } catch (error) {
+                // Handle network or fetch error
+                setErrorMessage(error.message);
+                console.log('Error in adding user');
+            }
+        };
+    
+        // Submit Event for Form
+        const handleSubmitUser = async (event) => {
+            event.preventDefault()
+            try {
+                setUsername('')
+                setUserPassword('')
+                // adder indikation på att frontend arbetar mot backend loader tex
+                await addUser(userName, userPassword)
+                // töm input fält efteråt
+                console.log('User added');
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        
+    
     ///FRONTENDSIDAN
 
 
@@ -233,12 +306,12 @@ function App() {
                     <div>
                     {showAddProduct === true ? (
                         <section className='add-products-section'>
-                            <form onSubmit={handleSubmit} action="submit" className='add-product-form'>
+                            <form action="submit" className='add-product-form'>
                                 <input className='add-product-input' type="text" placeholder='Namn på produkt' value={productName} onChange={e => setProductName(e.target.value)} />
                                 <input className='add-product-input' type="number" placeholder='Pris' value={productPrice} onChange={e => setProductPrice(e.target.value)} />
                                 <input className='add-product-input' type="text" placeholder='URL till bild' value={productImage} onChange={e => setProductImage(e.target.value)} />
                                 <input className='add-product-input' type="text" placeholder='Tags' value={productTag} onChange={e => setProductTag(e.target.value)} />
-                                <button type="submit" className='add-product-btn' onClick={() => setShowAddProduct(false)}>Add Product</button>
+                                <button type="submit" className='add-product-btn' onClick={handleSubmitProducts}>Add Product</button>
                             </form>
                         </section>
                     ) : null}
@@ -273,6 +346,13 @@ function App() {
                                         <button onClick={() => removeUser(user.id)} className='remove-user'>Remove user</button>
                                     </div>
                                 ))}
+                                 <form action="submit">
+                                <label htmlFor="Name">Användarnamn</label>
+                                <input type="text" value={userName} onChange={e => setUsername(e.target.value)} />
+                                <label htmlFor="Password">Password</label>
+                                <input type="text" value={userPassword} onChange={e => setUserPassword(e.target.value)} />
+                                <button type="submit" onClick={handleSubmitUser}>Addera Användare</button>
+                            </form>
                             </ul>
                         )
                             : <p> No users yet... </p>}
