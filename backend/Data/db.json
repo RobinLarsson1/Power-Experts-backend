@@ -174,9 +174,9 @@
     },
     {
       "id": 978778,
-      "name": "Test 5",
-      "price": 555,
-      "image": "https://www.boardstore.com.au/assets/thumbL/1055557.rtershy.8125.png?20201231141930",
+      "name": "Test8",
+      "price": 888,
+      "image": "https://www.boardstore.com.au/assets/full/002005091.jpg?20200826151201",
       "tags": [
         "Skateboard"
       ]
@@ -194,19 +194,14 @@
       "id": 2
     },
     {
-      "name": "MonkeThree",
-      "password": "bobandy",
+      "name": "binladen",
+      "password": "daesh",
       "id": 3
     },
     {
       "name": "Grogu McYoda",
       "password": "may-4th",
       "id": 53134
-    },
-    {
-      "name": "Kungen",
-      "password": "neehe",
-      "id": 62852
     }
   ]
 }

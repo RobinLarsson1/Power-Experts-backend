@@ -14,6 +14,14 @@ function App() {
     const [productTag, setProductTag] = useState('')
     const [userName, setUsername] = useState('')
     const [userPassword, setUserPassword] = useState('')
+    const [productId, setProductId] = useState('');
+    const [userId, setUserId] = useState('')
+    const [editUserName, setEditUserName] = useState('')
+    const [editUserPassword, setEditUserPassword] = useState('')
+    const [editProductName, setEditProductName] = useState('')
+    const [editProductPrice, setEditProductPrice] = useState('')
+    const [editProductImage, setEditProductImage] = useState('')
+    const [editProductTag, setEditProductTag] = useState('')
 
 
     // ENDPOINT GET PRODUCT
@@ -192,7 +200,7 @@ function App() {
                 }
             });
             if (response.status === 200) {
-                // Product successfully added
+                // user successfully added
                 // Perform any necessary actions after adding the product
                 getUsers()
             } else if (response.status === 400) {
@@ -200,7 +208,7 @@ function App() {
                 const errorText = await response.text();
                 setErrorMessage(errorText);
             } else if (response.status === 404) {
-                // Product not found
+                // user not found
                 const errorText = await response.text();
                 setErrorMessage(errorText);
             } else {
@@ -229,7 +237,122 @@ function App() {
         }
     }
 
+    // ENDPOINT PUT Product
+    const editProduct = async (productId, editProductName, editProductPrice, editProductImage, editProductTag) => {
+        setErrorMessage('');
+        try {
+            const response = await fetch(`/api/products/${productId}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    name: editProductName,
+                    price: Number(editProductPrice),
+                    image: editProductImage,
+                    tags: [editProductTag],
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
 
+            if (response.ok) {
+                // Product successfully edited
+                // Perform any necessary actions after editing the product
+                getProducts();
+                console.log('Product edit successful');
+            } else if (response.status === 400) {
+                // Invalid request
+                const errorText = await response.text();
+                setErrorMessage(errorText);
+            } else if (response.status === 404) {
+                // Product not found
+                const errorText = await response.text();
+                setErrorMessage(errorText);
+            } else {
+                // Other error occurred
+                throw new Error('An error occurred while editing the product');
+            }
+        } catch (error) {
+            // Handle network or fetch error
+            setErrorMessage(error.message);
+            console.log('Error editing product:', error);
+        }
+    };
+
+    const handleSubmitEditProduct = async (event) => {
+        event.preventDefault();
+        try {
+            // Clear input fields
+            setEditProductName('');
+            setEditProductPrice('');
+            setEditProductImage('');
+            setEditProductTag('');
+
+            // Call the editProduct function with the appropriate parameters
+            await editProduct(productId, editProductName, editProductPrice, editProductImage, editProductTag);
+
+            console.log('Product edit done');
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
+
+    // ENDPOINT PUT user
+    const editUser = async (userId, editUserName, editUserPassword) => {
+        setErrorMessage('');
+        try {
+            const response = await fetch(`/api/users/${userId}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    name: editUserName,
+                    password: editUserPassword, // 400 då number inte hade rätt typeOf
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                // user successfully edited
+                // Perform any necessary actions after editing the user
+                getUsers();
+                console.log('user edit successful');
+            } else if (response.status === 400) {
+                // Invalid request
+                const errorText = await response.text();
+                setErrorMessage(errorText);
+            } else if (response.status === 404) {
+                // user not found
+                const errorText = await response.text();
+                setErrorMessage(errorText);
+            } else {
+                // Other error occurred
+                throw new Error('An error occurred while editing the user');
+            }
+        } catch (error) {
+            // Handle network or fetch error
+            setErrorMessage(error.message);
+            console.log('Error editing user:', error);
+        }
+    };
+
+    const handleSubmitEditUser = async (event) => {
+        event.preventDefault();
+        try {
+            // Clear input fields
+            setUsername('');
+            setUserPassword('')
+
+
+            // Call the editProduct function with the appropriate parameters
+            await editUser(userId, editUserName, editUserPassword);
+
+            console.log('User edit done');
+        } catch (error) {
+            console.log(error);
+        }
+    };
     ///FRONTENDSIDAN
 
 
@@ -295,6 +418,7 @@ function App() {
                                             <p>Id: {product.id}</p>
                                             <div className='remove-btn-div'>
                                                 <button className='remove-btn' onClick={() => removeProduct(product.id)}>Ta bort produkt</button>
+
                                             </div>
                                         </div>
                                     </div>
@@ -331,7 +455,36 @@ function App() {
                         <input type="text" value={userName} onChange={e => setUsername(e.target.value)} />
                         <label htmlFor="Password">Password</label>
                         <input type="text" value={userPassword} onChange={e => setUserPassword(e.target.value)} />
-                        <button type="submit">Add Product</button>
+                        <button type="submit">Addera Användare</button>
+                    </form>
+                </div>
+                <div>
+                    <form onSubmit={handleSubmitEditProduct} action="submit">
+                        <label htmlFor="productID">Produkt ID</label>
+                        <input type="text" value={productId} onChange={e => setProductId(e.target.value)} />
+                        <label htmlFor="Name">Nytt Produktnamn</label>
+                        <input type="text" value={editProductName} onChange={e => setEditProductName(e.target.value)} />
+                        <label htmlFor="Price">Nytt Pris</label>
+                        <input type="number" value={editProductPrice} onChange={e => setEditProductPrice(e.target.value)} />
+
+                        <label htmlFor="image">Ny Url till bild</label>
+                        <input type="text" value={editProductImage} onChange={e => setEditProductImage(e.target.value)} />
+
+                        <label htmlFor="tags">Ny Tag</label>
+                        <input type="text" value={editProductTag} onChange={e => setEditProductTag(e.target.value)} />
+                        <button type="submit">Ändra Product</button>
+                    </form>
+                </div>
+                <div>
+                    <form onSubmit={handleSubmitEditUser} action="submit">
+                        <label htmlFor="userID">Användar ID</label>
+                        <input type="text" value={userId} onChange={e => setUserId(e.target.value)} />
+                        <label htmlFor="Name">Nytt Användarnamn</label>
+                        <input type="text" value={editUserName} onChange={e => setEditUserName(e.target.value)} />
+                        <label htmlFor="Price">Nytt Lösenord</label>
+                        <input type="text" value={editUserPassword} onChange={e => setEditUserPassword(e.target.value)} />
+
+                        <button type="submit">Ändra Användare</button>
                     </form>
                 </div>
             </div >
