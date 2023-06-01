@@ -129,6 +129,10 @@ function App() {
         setProductTag(!productTag)
     }
 
+    const allProducts = () => {
+        setDisplayTag(false)
+    }
+
     // ENDPOINT POST PRODUCT
     const addProduct = async (productName, productPrice, productImage, productTag) => {
         setErrorMessage('');
@@ -242,6 +246,7 @@ function App() {
                             Kategori
                         </button>
                         <ul className='category-ul'>
+                       {productTag && <li className={'category-tags'} onClick={allProducts}>Alla produkter</li>}
                             {productTag &&
                                 products.reduce((uniqueTags, product) => {
                                     product.tags.forEach((productTag) => {
@@ -251,14 +256,15 @@ function App() {
                                     });
                                     return uniqueTags;
                                 }, []).map((uniqueTag) => (
-                                    <p
-                                        className={`category-tags ${uniqueTag === displayTag && 'selected'}`}
+                                    <li
+                                        className={`category-tags ${uniqueTag === displayTag}`}
                                         key={uniqueTag}
                                         onClick={handletag}
                                     >
                                         {uniqueTag}
-                                    </p>
+                                    </li>
                                 ))}
+                                
                         </ul>
                     </nav>
 
