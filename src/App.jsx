@@ -29,7 +29,8 @@ function App() {
     const [originalContent, setOriginalContent] = useState('products');
     const [showAddProduct, setShowAddProduct] = useState('false')
 
-    const [productTag, setProductTag] = useState(false)
+    const [visibleTag, setVisibleTag] = useState(false)
+    const [productTag, setProductTag] = useState('')
     const [displayTag, setDisplayTag] = useState('')
 
 
@@ -136,7 +137,7 @@ function App() {
         setDisplayTag(selectedTag)
     }
     const handleCategory = () => {
-        setProductTag(!productTag)
+        setVisibleTag(!visibleTag)
     }
 
     const allProducts = () => {
@@ -409,13 +410,6 @@ function App() {
                                 />
                             )}
                         </div>
-
-
-
-
-
-
-
                         <div>
                             {showAddProduct === true ? (
                                 <section className='add-products-section'>
@@ -443,8 +437,8 @@ function App() {
                                 Kategori
                             </button>
                             <ul className='category-ul'>
-                                {productTag && <li className={'category-tags'} onClick={allProducts}>Alla produkter</li>}
-                                {productTag &&
+                                {visibleTag && <li className={'category-tags'} onClick={allProducts}>Alla produkter</li>}
+                                {visibleTag &&
                                     products.reduce((uniqueTags, product) => {
                                         product.tags.forEach((productTag) => {
                                             if (!uniqueTags.includes(productTag)) {
@@ -464,7 +458,6 @@ function App() {
 
                             </ul>
                         </nav>
-
 
                         {/* Display selected tags */}
                         {displayTag ? (
