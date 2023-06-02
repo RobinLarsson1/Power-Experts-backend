@@ -6,6 +6,7 @@ import './users.css'
 import './addproducts.css'
 import './addusers.css'
 import { FaUserAlt } from 'react-icons/fa';
+import { FaArrowCircleUp } from 'react-icons/fa'
 // import { addProduct } from './endpoints/POST'
 
 
@@ -279,6 +280,10 @@ function App() {
         }
     }
 
+    // To top
+    const scrollTop = () => {
+		document.documentElement.scrollTop = 0;
+	}
 
 
     ///FRONTENDSIDAN
@@ -286,6 +291,7 @@ function App() {
 
     return (
         <div>
+            <button className='to-top' onClick={scrollTop}>^</button>
             <header className='header'>
                 <div className="hero-text">
                     <h1 className="hero-h1">POWER EXPERTS</h1>
