@@ -27,12 +27,30 @@ Provide instructions on how to install and set up your API. Include any prerequi
 
 ## Usage
 <a name="usage"></a>
-Explain how developers can use your API. Provide code examples and explain the available endpoints, request/response formats, and any authentication mechanisms. Include any special considerations or best practices for using your API effectively.
+Our API is quite simple and it's primary use is for handling data regarding the products and users in our database. 
+
 
 ## API Documentation
 <a name="api-documentation"></a>
-https://docs.google.com/document/d/1usF0YqcRgRNmjQWBgD4vGfIweJSCL3gZU-dlWhoY0f4/edit
-Link to the full API documentation if available. This could be a separate document or a dedicated section within the README.md file. Make sure the documentation is up to date and comprehensive, providing detailed information about each endpoint, parameters, response formats, error handling, etc.
+
+### 1.[GET]  /api/products - Get all products
+### 2.[POST]  /api/products/ - 
+> Request body { name, price, image, tags } .
+### 3.[DELETE] /api/products/”productID” -
+> - Remove a product by calling the assigned ID.
+### 4.[PUT] api/products/”productID” - "cors": "^2.8.5",
+> Modify an existing product, Request Body { name, price, image, tags }
+### 5.[GET] /api/users - Get all users.
+### 6.[POST] /api/users/ - 
+> Request body { name, password }
+### 7.[DELETE]  /Api/users/”userID” -
+> Remove a user by calling the assigned ID.
+### 8.[PUT] api/users/”userID” -
+> Modify an existing user. Request body { name, password }
+
+> ID is assigned in the backend and never has to be manually added, it only has to be called upon when using the DELETE or PUT methods.
+> Validation exists, However for backend purpouses only.
+
 
 ## Examples
 <a name="examples"></a>
@@ -48,6 +66,7 @@ Get all Products
             console.log('Error in fetching products');
         }
     }
+    
 Upload new Product
 
     // ENDPOINT POST PRODUCT
