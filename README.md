@@ -9,8 +9,15 @@ And so it does.
 - [Usage](#usage)
 - [API Documentation](#api-documentation)
 - [Examples](#examples)
-Contributing
-License
+- [Contributing](#Contributing)
+- [License](#License)
+- [Contact Information](#Contact Information)
+
+
+
+
+
+<br>
 
 
 ## Installation
@@ -22,12 +29,18 @@ Dependencies:
     "express": "^4.18.2",
     "lowdb": "^6.0.1",
 
-
-Provide instructions on how to install and set up your API. Include any prerequisites, such as required software or dependencies. You can also include code snippets or commands to guide developers through the installation process.
+<br>
 
 ## Usage
 <a name="usage"></a>
 Our API is quite simple and it's primary use is for handling data regarding the products and users in our database. 
+
+
+
+
+<br>
+<br>
+
 
 
 ## API Documentation
@@ -48,8 +61,14 @@ Our API is quite simple and it's primary use is for handling data regarding the 
 ### 8.[PUT] api/users/”userID” -
 > Modify an existing user. Request body { name, password }
 
-> ID is assigned in the backend and never has to be manually added, it only has to be called upon when using the DELETE or PUT methods.
+> **ID is assigned in the backend and never has to be manually added, it only has to be called upon when using the DELETE or PUT methods.**
 > Validation exists, However for backend purpouses only.
+
+
+
+
+<br>
+<br>
 
 
 ## Examples
@@ -103,11 +122,23 @@ Upload new Product
         }
     };
 
+
+
+<br>
+<br>
+
 ## Contributing
 Please Submit any issues found regarding the API, We'd be happy to improve ourselves for future endeavours :)
 
+
+<br>
+
 ## License
-Specify the license under which you're releasing your API. Choose an appropriate open-source license and include the license text or a link to it.
+¯\\_(ツ)_/¯ 
+
+
+<br>
+
 
 ## Contact Information
 https://github.com/Hollgy
