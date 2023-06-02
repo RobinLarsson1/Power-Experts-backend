@@ -46,21 +46,21 @@ Our API is quite simple and it's primary use is for handling data regarding the 
 ## API Documentation
 <a name="api-documentation"></a>
 
-### 1.[GET]  /api/products -
+### 1.[GET]  /api/products 
 > Get all products. *Optional* add /”productID” lastly for individual product 
-### 2.[POST]  /api/products/ -
+### 2.[POST]  /api/products/ 
 > Request body { name, price, image, tags } .
-### 3.[DELETE] /api/products/”productID” -
+### 3.[DELETE] /api/products/”productID” 
 > Remove a product by calling the assigned ID.
-### 4.[PUT] api/products/”productID” - 
+### 4.[PUT] api/products/”productID”  
 > Modify an existing product, Request Body { name, price, image, tags } 
-### 5.[GET] /api/users - 
+### 5.[GET] /api/users  
 > Get all users. *Optional* add /"userID" lastly for individual user
-### 6.[POST] /api/users/ - 
+### 6.[POST] /api/users/  
 > Request body { name, password } 
-### 7.[DELETE]  /Api/users/”userID” -
+### 7.[DELETE]  /Api/users/”userID” 
 > Remove a user by calling the assigned ID. 
-### 8.[PUT] api/users/”userID” -
+### 8.[PUT] api/users/”userID” 
 > Modify an existing user. Request body { name, password }
 
 > **ID is assigned in the backend and never has to be manually added, it only has to be called upon when using the DELETE or PUT methods.** 
