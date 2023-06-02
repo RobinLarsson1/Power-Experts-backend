@@ -388,7 +388,7 @@ function App() {
                                         <div className='product' key={product.id}>
                                             <img className='product-image' src={product.image}></img>
                                             <div className='product-text'>
-                                                <h3>Namn: {product.name}</h3>
+                                                <h3>{product.name}</h3>
                                                 <p>Pris: {product.price}</p>
                                                 <p>Id: {product.id}</p>
                                                 <div className='remove-btn-div'>
@@ -413,7 +413,7 @@ function App() {
                                         <div className='product' key={product.id}>
                                             <img className='product-image' src={product.image}></img>
                                             <div className="product-text">
-                                                <h3>Namn: {product.name}</h3>
+                                                <h3>{product.name}</h3>
                                                 <p>Pris: {product.price}</p>
                                                 <p>Id: {product.id}</p>
                                                 <div className='remove-btn-div'>
