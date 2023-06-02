@@ -9,7 +9,7 @@ p {
     border-radius: 2px;
     margin-left: 5px;
     font-family: 'Nanum Gothic Coding', monospace;
-
+    cursor: pointer;
 }
 
 .add-user-input{

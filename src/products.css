@@ -94,6 +94,7 @@
 	border: none;
     border-radius: 3px;
     margin: 5px;
+	cursor: pointer;
 }
 
 .category-button{

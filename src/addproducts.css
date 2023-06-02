@@ -24,4 +24,11 @@
 
 .add-product-btn {
 	padding: 8px 16px;
+	padding: 8px 16px;
+    color: #32C181;
+    background-color: #212121;
+    border-radius: 2px;
+    margin-left: 5px;
+    font-family: 'Nanum Gothic Coding', monospace;
+	cursor: pointer;
 }
