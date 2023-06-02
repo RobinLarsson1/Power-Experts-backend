@@ -1,4 +1,4 @@
-# Power-Experts-backend
+# Power-Experts-API
 
 ## Description
 This is an API for our school task. The task was to create our own API to handle small scale data for a webapp.
