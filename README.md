@@ -1,7 +1,7 @@
 # Power-Experts-API
 
 ## Description
-This is an API for our school task. The task was to create our own API to handle small scale data for a webapp.
+This is an API for a school assignment. The task was to create our own API to handle small scale data for a webapp.
 
 
 ## Table of Contents
