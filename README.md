@@ -46,14 +46,16 @@ Our API is quite simple and it's primary use is for handling data regarding the 
 ## API Documentation
 <a name="api-documentation"></a>
 
-### 1.[GET]  /api/products - Get all products 
+### 1.[GET]  /api/products -
+> Get all products. *Optional* add /”productID” lastly for individual product 
 ### 2.[POST]  /api/products/ -
 > Request body { name, price, image, tags } .
 ### 3.[DELETE] /api/products/”productID” -
 > Remove a product by calling the assigned ID.
 ### 4.[PUT] api/products/”productID” - 
 > Modify an existing product, Request Body { name, price, image, tags } 
-### 5.[GET] /api/users - Get all users. 
+### 5.[GET] /api/users - 
+> Get all users. *Optional* add /"userID" lastly for individual user
 ### 6.[POST] /api/users/ - 
 > Request body { name, password } 
 ### 7.[DELETE]  /Api/users/”userID” -
