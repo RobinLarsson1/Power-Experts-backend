@@ -217,6 +217,7 @@ function App() {
             // adder indikation på att frontend arbetar mot backend loader tex
             await addProduct(productName, productPrice, productImage, productTag)
             // töm input fält efteråt
+            setShowAddProduct(false)
             console.log('product added');
         } catch (error) {
             console.log(error);
