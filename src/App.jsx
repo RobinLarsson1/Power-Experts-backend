@@ -6,7 +6,6 @@ import './users.css'
 import './addproducts.css'
 import './addusers.css'
 import { FaUserAlt } from 'react-icons/fa';
-import { FaArrowCircleUp } from 'react-icons/fa'
 // import { addProduct } from './endpoints/POST'
 
 
@@ -20,14 +19,6 @@ function App() {
     const [productImage, setProductImage] = useState('')
     const [userName, setUsername] = useState('')
     const [userPassword, setUserPassword] = useState('')
-    const [productId, setProductId] = useState('');
-    const [userId, setUserId] = useState('')
-    const [editUserName, setEditUserName] = useState('')
-    const [editUserPassword, setEditUserPassword] = useState('')
-    const [editProductName, setEditProductName] = useState('')
-    const [editProductPrice, setEditProductPrice] = useState('')
-    const [editProductImage, setEditProductImage] = useState('')
-    const [editProductTag, setEditProductTag] = useState('')
     const [content, setContent] = useState('products')
     const [originalContent, setOriginalContent] = useState('products');
     const [showAddProduct, setShowAddProduct] = useState('false')
