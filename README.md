@@ -131,7 +131,7 @@ Upload new Product
 <br>
 
 ## Contributing
-Please Submit any issues found regarding the API, We'd be happy to improve ourselves for future endeavours :)
+Please Submit any issues found regarding the API, We'd be happy to improve ourselves for future endeavours.
 
 
 <br>
