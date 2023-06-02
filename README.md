@@ -144,8 +144,12 @@ Please Submit any issues found regarding the API, We'd be happy to improve ourse
 
 
 ## Contact_Information
-https://github.com/Hollgy
-https://github.com/RobinLarsson1
-https://github.com/Willi4mL
+On Github
+<br>
+@Hollgy
+<br>
+@RobinLarsson1
+<br>
+@Willi4mL
 
 
