@@ -1,0 +1,19 @@
+p {
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.add-user-btn {
+    padding: 8px 16px;
+    color: #32C181;
+    background-color: #212121;
+    border-radius: 2px;
+    margin-left: 5px;
+    font-family: 'Nanum Gothic Coding', monospace;
+    cursor: pointer;
+}
+
+.add-user-input{
+    height: 0.8em;
+	width: 15em;
+	padding: 1em;
+}

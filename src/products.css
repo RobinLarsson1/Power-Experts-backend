@@ -1,0 +1,147 @@
+/* Product-cards */
+.wrapper {
+	display: grid;
+	align-items: center;
+	justify-items: center;
+	grid-template-columns: repeat(3, 1fr);
+}
+.product {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	margin: 2em 1em;
+	font-family: 'Nanum Gothic Coding', monospace;
+    text-align: center;
+	
+}
+
+.add-product-div {
+    width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
+.add-text {
+    margin: 0em 0 2em 0;
+	color: #32C181;
+	font-family: 'Nanum Gothic Coding', monospace;
+	cursor: pointer;
+}
+
+.product-image {
+    width: 18em;
+	object-fit: contain;
+	background-color: #ffffff;
+	padding: 1.5em;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+	height: 20em;
+}
+
+.product-text {
+    background-color: #32C181;
+	width: 100%;
+	height: 6em;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+	padding: 0.5em 0;
+}
+.product-text > * {
+	margin-bottom: 0.1em;
+}
+
+
+.product-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-hr {
+    color: #ffffff;
+    margin: 0 1em;
+	width: 25vw;
+}
+.product-header-h2 {
+    margin: 1em 1em;
+	font-size: 36px;
+	color: #ffffff;
+	font-family: 'Imbue', serif;
+}
+
+.search-div {
+    width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-bar {
+    width: 25em;
+	height: 1.75em;
+	background-color: #212121;
+	border: 2px solid #ffffff;
+	border-radius: 2px;
+	padding: 5px;
+	color: #ffffff;
+}
+
+
+.remove-btn {
+    padding: 8px 16px;
+	border: none;
+    border-radius: 3px;
+    margin: 5px;
+	cursor: pointer;
+}
+
+.category-button{
+    padding: 8px 16px;
+    color: #32C181;
+    background-color: #212121;
+    border-radius: 2px;
+    margin-left: 5px;
+    font-family: 'Nanum Gothic Coding', monospace;
+
+}
+
+.category-ul{
+    background-color: #212121;
+    color: #32C181;
+    font-family: 'Nanum Gothic Coding', monospace;
+    border: none;
+}
+
+@media (max-width: 1130px) {
+	.wrapper {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 760px) {
+	.wrapper {
+		grid-template-columns: 1fr;
+	}
+	.category-button{
+		margin-top: 1em;
+	
+	}
+}
+
+@media (max-width: 420px) {
+	.product {
+		width: 18em;
+	}
+	.product-image {
+		width: 18em;
+		padding: 0;
+	}
+	.product-header-h2 {
+		margin: 1em 0.1em;
+	}
+	.search-bar {
+		width: 18em;
+	}
+}

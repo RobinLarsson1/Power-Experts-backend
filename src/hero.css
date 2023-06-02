@@ -1,0 +1,150 @@
+* {
+	margin: 0;
+	padding: 0;
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: #212121;
+}
+
+.hero-img {
+	z-index: 2;
+	width: 100%;
+	height: 100vh;
+	object-fit: cover;
+	filter: brightness(0.7);
+}
+
+.header {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	position: absolute;
+	z-index: 2;
+	top: 3%;
+	left: 0;
+	width: 100%;
+	padding: 0 5%;
+	box-sizing: border-box;
+}
+
+.hero-text {
+	grid-column: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	color: #ffffff;
+}
+
+.hero-cat {
+	grid-column: 3;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	font-size: 24px;
+	color: #ffffff;
+}
+
+.hero-h1 {
+	font-size: 68px;
+	color: #ffffff;
+	font-family: 'Imbue', serif;
+}
+
+.hero-p {
+	font-family: 'Nanum Gothic Coding', monospace;
+	color: #32C181;
+	font-size: 24px;
+	margin-bottom: 0.5em;
+	font-weight: 600;
+}
+
+.cat-p {
+	font-family: 'Nanum Gothic Coding', monospace;
+	transition: all 0.3s;
+	cursor: pointer;
+}
+
+.cat-p:hover {
+	transform: scale(1.05);
+}
+
+.hero-hr {
+	width: 60vw;
+}
+
+.search-logo {
+	cursor: pointer;
+	transition: all 0.5s;
+
+}
+
+.search-logo:hover {
+	transform: scale(1.1);
+}
+
+/* Category tags */
+.category-container {
+	position: relative;
+}
+
+
+.category-ul {
+	position: absolute;
+	color: #ffffff;
+	background-color: #212121;
+	border: 1px solid #ffffff;
+}
+
+.category-tags {
+	margin: 1em 0.5em;
+}
+
+.category-tags:hover {
+	background-color: #414040;
+}
+
+.category-button:hover,
+.category-tags:hover {
+	cursor: pointer;
+}
+
+.to-top {
+	position: fixed;
+	bottom: 70px;
+	right: 15px;
+	z-index: 2;
+	width: 1.5em;
+	padding-top: 0.3em;
+	font-size: 2em;
+	border-radius: 50em;
+	border: 0.5px solid #32C181;
+	background-color: #212121;
+	color: #32C181;
+	cursor: pointer;
+}
+
+@media (max-width: 760px) {
+	.wrapper {
+		grid-template-columns: 1fr;
+	}
+
+	.hero-cat {
+		margin-top: 1em;
+		grid-column: 2;
+		grid-row: 2;
+	}
+}
+
+
+@media (max-width: 420px) {
+	.hero-cat {
+		margin-top: 1em;
+	}
+
+	.header {
+		padding: 0;
+	}
+}
