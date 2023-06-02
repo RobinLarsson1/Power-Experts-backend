@@ -61,7 +61,8 @@ Our API is quite simple and it's primary use is for handling data regarding the 
 ### 8.[PUT] api/users/”userID” -
 > Modify an existing user. Request body { name, password }
 
-> **ID is assigned in the backend and never has to be manually added, it only has to be called upon when using the DELETE or PUT methods.**
+> **ID is assigned in the backend and never has to be manually added, it only has to be called upon when using the DELETE or PUT methods.** 
+> <br>
 > Validation exists, However for backend purpouses only.
 
 
