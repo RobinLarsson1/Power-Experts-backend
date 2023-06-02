@@ -30,6 +30,7 @@ function App() {
     const [content, setContent] = useState('products')
     const [originalContent, setOriginalContent] = useState('products');
     const [showAddProduct, setShowAddProduct] = useState('false')
+    const [showAddUser, setShowAddUser] = useState('false')
 
     const [visibleTagButton, setVisibleTagButton] = useState(true)
     const [visibleTag, setVisibleTag] = useState(false)
@@ -271,6 +272,7 @@ function App() {
             // adder indikation på att frontend arbetar mot backend loader tex
             await addUser(userName, userPassword)
             // töm input fält efteråt
+            setShowAddUser('false')
             console.log('User added');
         } catch (error) {
             console.log(error);
@@ -308,12 +310,12 @@ function App() {
                 </section>
                 {content === 'products' && (
                 <div className="add-product-div">
-                    <h3 className='add-text' onClick={() => setShowAddProduct(true)}>Lägg till produkt +</h3>
+                    <h3 className='add-text' onClick={() => setShowAddProduct(!showAddProduct)}>Lägg till produkt +</h3>
                 </div>
                 )}
                  {content === 'users' && (
                 <div className="add-product-div">
-                    <h3 className='add-text' onClick={() => setShowAddProduct(true)}>Lägg till användare +</h3>
+                    <h3 className='add-text' onClick={() => setShowAddUser(!showAddUser)}>Lägg till användare +</h3>
                 </div>
                 )}
                 <div >
@@ -340,6 +342,14 @@ function App() {
                                 </form>
                             </section>
                         ) : null}
+                          {showAddUser === true ? (
+                                    <form className='add-product-form' action="submit">
+                                        <input className='add-user-input' placeholder='Ange ett nytt användarnamn' type="text" value={userName} onChange={e => setUsername(e.target.value)} />
+                                        <input className='add-user-input'
+                                            placeholder='Ange ett nytt lösennord' type="text" value={userPassword} onChange={e => setUserPassword(e.target.value)} />
+                                        <button className='add-user-btn' type="submit" onClick={handleSubmitUser}>Lägg till ny Användare</button>
+                                    </form>
+                                    ) : null}
                     </div>
 
                     {/* Handle tags */}
@@ -427,12 +437,6 @@ function App() {
                                             <button onClick={() => removeUser(user.id)} className='remove-user'>Remove user</button>
                                         </div>
                                     ))}
-                                    <form className='add-product-form' action="submit">
-                                        <input className='add-user-input' placeholder='Ange ett nytt användarnamn' type="text" value={userName} onChange={e => setUsername(e.target.value)} />
-                                        <input className='add-user-input'
-                                            placeholder='Ange ett nytt lösennord' type="text" value={userPassword} onChange={e => setUserPassword(e.target.value)} />
-                                        <button className='add-user-btn' type="submit" onClick={handleSubmitUser}>Lägg till ny Användare</button>
-                                    </form>
                                 </ul>
                             )
                                 : <p> No users yet... </p>}
