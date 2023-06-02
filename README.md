@@ -46,18 +46,18 @@ Our API is quite simple and it's primary use is for handling data regarding the 
 ## API Documentation
 <a name="api-documentation"></a>
 
-### 1.[GET]  /api/products - Get all products
+### 1.[GET]  /api/products - Get all products 
 ### 2.[POST]  /api/products/ - 
 > Request body { name, price, image, tags } .
 ### 3.[DELETE] /api/products/”productID” -
 > - Remove a product by calling the assigned ID.
 ### 4.[PUT] api/products/”productID” - "cors": "^2.8.5",
-> Modify an existing product, Request Body { name, price, image, tags }
-### 5.[GET] /api/users - Get all users.
+> Modify an existing product, Request Body { name, price, image, tags } 
+### 5.[GET] /api/users - Get all users. 
 ### 6.[POST] /api/users/ - 
-> Request body { name, password }
+> Request body { name, password } 
 ### 7.[DELETE]  /Api/users/”userID” -
-> Remove a user by calling the assigned ID.
+> Remove a user by calling the assigned ID. 
 ### 8.[PUT] api/users/”userID” -
 > Modify an existing user. Request body { name, password }
 
