@@ -299,7 +299,6 @@ function App() {
 
             <div className='produkt-div'>
 
-                {/* <button onClick={getProducts}> Give me some products! </button> */}
             </div>
             <div className='product-wrapper'>
                 <section className="product-header">
@@ -307,9 +306,16 @@ function App() {
                     <h2 className='product-header-h2'>{content === 'products' ? 'PRODUKTER' : content === 'users' ? 'ANVÄNDARE' : ''}</h2>
                     <hr className='product-hr' />
                 </section>
+                {content === 'products' && (
                 <div className="add-product-div">
                     <h3 className='add-text' onClick={() => setShowAddProduct(true)}>Lägg till produkt +</h3>
                 </div>
+                )}
+                 {content === 'users' && (
+                <div className="add-product-div">
+                    <h3 className='add-text' onClick={() => setShowAddProduct(true)}>Lägg till användare +</h3>
+                </div>
+                )}
                 <div >
                     <div className='search-div'>
                         {content === 'products' && (
