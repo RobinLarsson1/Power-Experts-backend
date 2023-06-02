@@ -33,7 +33,7 @@ Dependencies:
 
 ## Usage
 <a name="usage"></a>
-Our API is quite simple and it's primary use is for handling data regarding the products and users in our database. 
+Our API is quite basic and it's primary use is for handling data regarding the products and users in our database. 
 
 
 
