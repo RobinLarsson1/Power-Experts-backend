@@ -124,6 +124,10 @@
 	.wrapper {
 		grid-template-columns: 1fr;
 	}
+	.category-button{
+		margin-top: 1em;
+	
+	}
 }
 
 @media (max-width: 420px) {
