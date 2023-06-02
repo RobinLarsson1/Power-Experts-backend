@@ -106,3 +106,24 @@ body {
 .category-tags:hover {
 	cursor: pointer;
 }
+
+@media (max-width: 760px) {
+	.wrapper {
+		grid-template-columns: 1fr;
+	}
+	.hero-cat {
+		margin-top: 1em;
+        grid-column: 2;
+        grid-row: 2;
+    }
+}
+
+
+@media (max-width: 420px) {
+    .hero-cat {
+        margin-top: 1em;
+    }
+	.header {
+		padding: 0;
+	}
+}

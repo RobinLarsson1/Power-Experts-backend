@@ -127,5 +127,17 @@
 }
 
 @media (max-width: 420px) {
-	
+	.product {
+		width: 18em;
+	}
+	.product-image {
+		width: 18em;
+		padding: 0;
+	}
+	.product-header-h2 {
+		margin: 1em 0.1em;
+	}
+	.search-bar {
+		width: 18em;
+	}
 }
